@@ -10,12 +10,12 @@ const latestRevision = "b".repeat(40);
 const release = {
   tag_name: "v1.2.0",
   target_commitish: latestRevision,
-  html_url: "https://github.com/TNTcraftHIM/Piik/releases/tag/v1.2.0",
+  html_url: "https://github.com/ferxal/FerxPiik/releases/tag/v1.2.0",
 };
 const packageAsset = (target: string, suffix = "") => {
   const name = `piik-app-${target}${suffix}.zip`;
   return { name, size: 1024, state: "uploaded",
-    browser_download_url: `https://github.com/TNTcraftHIM/Piik/releases/download/${release.tag_name}/${name}` };
+    browser_download_url: `https://github.com/ferxal/FerxPiik/releases/download/${release.tag_name}/${name}` };
 };
 
 describe("App release update notice", () => {
@@ -52,11 +52,11 @@ describe("App release update notice", () => {
   it("selects the Android APK from either release provider", () => {
     const name = "piik-app-android-universal.apk";
     const asset = { name, size: 1024, state: "uploaded",
-      browser_download_url: `https://github.com/TNTcraftHIM/Piik/releases/download/${release.tag_name}/${name}` };
+      browser_download_url: `https://github.com/ferxal/FerxPiik/releases/download/${release.tag_name}/${name}` };
     expect(parseReleaseMetadata({ ...release, assets: [asset] }, "android-universal")?.url)
       .toBe(asset.browser_download_url);
     const mirrorAsset = { name, type: "attach",
-      browser_download_url: `https://atomgit.com/TNTcraftHIM/Piik/releases/download/${release.tag_name}/${name}` };
+      browser_download_url: `https://atomgit.com/ferxal/FerxPiik/releases/download/${release.tag_name}/${name}` };
     expect(parseMirrorReleaseMetadata({ tag_name: release.tag_name, prerelease: false,
       body: `<!-- piik-source: ${latestRevision} -->`, assets: [mirrorAsset] }, "android-universal")?.url)
       .toBe(mirrorAsset.browser_download_url);
@@ -81,20 +81,20 @@ describe("App release update notice", () => {
   it.each(["windows-amd64", "darwin-arm64", "darwin-amd64", "linux-amd64", "linux-arm64"])("uses a listed mirror %s ZIP only after the existing primary check fails", async (packageTarget) => {
     const name = `piik-app-${packageTarget}.zip`;
     const mirrorAsset = { name, type: "attach",
-      browser_download_url: `https://atomgit.com/TNTcraftHIM/Piik/releases/download/${release.tag_name}/${name}` };
+      browser_download_url: `https://atomgit.com/ferxal/FerxPiik/releases/download/${release.tag_name}/${name}` };
     const mirrored = { tag_name: release.tag_name, prerelease: false,
       body: `<!-- piik-source: ${latestRevision} -->`, assets: [mirrorAsset] };
     const fetchImpl = vi.fn<typeof fetch>(async (input) => String(input) === DEFAULT_RELEASE_API_URL
       ? new Response(null, { status: 503 }) : Response.json([mirrored]));
     await expect(checkReleaseUpdate({ version: "v1.1.0", revision: currentRevision },
       { fetchImpl, packageTarget })).resolves.toMatchObject({ url: mirrorAsset.browser_download_url,
-        releaseURL: `https://atomgit.com/TNTcraftHIM/Piik/releases` });
+        releaseURL: `https://atomgit.com/ferxal/FerxPiik/releases` });
     expect(fetchImpl).toHaveBeenCalledTimes(2);
     for (const assets of [[], [mirrorAsset, mirrorAsset], [{ ...mirrorAsset, type: "source" }],
       [{ ...mirrorAsset, browser_download_url: mirrorAsset.browser_download_url.replace("atomgit.com", "evil.example") }],
       [{ ...mirrorAsset, browser_download_url: mirrorAsset.browser_download_url.replace("v1.2.0", "v1.1.0") }],
     ]) expect(parseMirrorReleaseMetadata({ ...mirrored, assets }, packageTarget)?.url)
-      .toBe(`https://atomgit.com/TNTcraftHIM/Piik/releases`);
+      .toBe(`https://atomgit.com/ferxal/FerxPiik/releases`);
   });
 
   it("checks a release without sending installed identity or credentials", async () => {
@@ -137,7 +137,7 @@ describe("App release update notice", () => {
     ["development", "official-release"],
   ])("warns for a newer major without inferring compatibility from an unknown build: %s", (version, kind) => {
     const latest = parseReleaseMetadata({ ...release, tag_name: "v2.0.0",
-      html_url: "https://github.com/TNTcraftHIM/Piik/releases/tag/v2.0.0" })!;
+      html_url: "https://github.com/ferxal/FerxPiik/releases/tag/v2.0.0" })!;
     expect(releaseUpdateNotice({ version, revision: currentRevision }, latest)?.kind ?? null).toBe(kind);
   });
 
@@ -148,7 +148,7 @@ describe("App release update notice", () => {
       { tag_name: "v1.2.0-rc.1" },
       { tag_name: "v1.2.0+other" },
       { html_url: "https://evil.example" },
-      { html_url: "https://user@github.com/TNTcraftHIM/Piik/releases/tag/v1.2.0" },
+      { html_url: "https://user@github.com/ferxal/FerxPiik/releases/tag/v1.2.0" },
       { draft: true },
       { prerelease: true },
     ]) expect(parseReleaseMetadata({ ...release, ...changed })).toBeNull();
@@ -169,8 +169,8 @@ describe("App release update notice", () => {
     const current = { version: "v1.9.0", revision: currentRevision };
     await expect(checkReleaseUpdate(current, { fetchImpl })).resolves.toEqual({
       kind: "update-available", version: "v1.10.0", revision: latestRevision,
-      url: "https://atomgit.com/TNTcraftHIM/Piik/releases",
-      releaseURL: "https://atomgit.com/TNTcraftHIM/Piik/releases",
+      url: "https://atomgit.com/ferxal/FerxPiik/releases",
+      releaseURL: "https://atomgit.com/ferxal/FerxPiik/releases",
     });
     await expect(checkReleaseUpdate({ ...current, version: "v2.0.0" }, { fetchImpl })).resolves.toBeNull();
   });

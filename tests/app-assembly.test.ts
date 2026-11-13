@@ -142,8 +142,8 @@ it("assembles a macOS bundle that retains its executable and helpers when moved 
       "--capture", join(root, "helper"), "--tunnel", join(root, "helper")];
     vi.resetModules();
     await import("../scripts/assemble-app.mjs");
-    const relocated = join(root, "Moved Piik.app");
-    renameSync(join(output, "Piik App.app"), relocated);
+    const relocated = join(root, "Moved FerxLet.app");
+    renameSync(join(output, "FerxLet App.app"), relocated);
     const contents = join(relocated, "Contents");
     const plist = readFileSync(join(contents, "Info.plist"), "utf8");
     const entry = plist.match(/<key>CFBundleExecutable<\/key><string>([^<]+)<\/string>/)![1]!;

@@ -3,7 +3,7 @@ import { pages, documentLink, documentImage, repository } from '../pages.mjs';
 import { githubSlug } from '../../../scripts/markdown-slug.mjs';
 import { THEME_STORAGE_KEY } from '../../../src/client/ui/theme.ts';
 
-const editPattern = ({ frontmatter }) => `https://github.com/TNTcraftHIM/Piik/edit/main/${frontmatter.source}`;
+const editPattern = ({ frontmatter }) => `https://github.com/ferxal/FerxPiik/edit/main/${frontmatter.source}`;
 const base = process.env.PIIK_DOCS_BASE || '/docs/';
 
 const sidebar = chinese => {
@@ -25,13 +25,13 @@ export default defineConfig({
   outDir: '../../build/site/docs',
   cacheDir: '../../build/docs-cache',
   tempDir: '../../build/docs-temp',
-  title: 'Piik',
+  title: 'FerxLet',
   head: [
     ['link', { rel: 'icon', href: `${base}../favicon.ico` }],
     ['link', { rel: 'icon', type: 'image/png', sizes: '96x96', href: `${base}../assets/favicon.png` }],
     ['link', { rel: 'icon', type: 'image/svg+xml', sizes: 'any', href: `${base}../assets/favicon.svg` }],
   ],
-  description: 'Piik guides, troubleshooting and self-hosting.',
+  description: 'FerxLet guides, troubleshooting and self-hosting.',
   cleanUrls: false,
   appearance: { storageKey: THEME_STORAGE_KEY },
   transformHead({ head }) {
@@ -50,10 +50,10 @@ export default defineConfig({
   locales: {
     root: { label: 'English', lang: 'en', themeConfig: { sidebar: sidebar(false) } },
     zh: {
-      label: '简体中文', lang: 'zh-CN', description: 'Piik 使用教程、问题排查与自部署指南。',
+      label: '简体中文', lang: 'zh-CN', description: 'FerxLet 使用教程、问题排查与自部署指南。',
       themeConfig: {
         sidebar: sidebar(true),
-        nav: [{ text: '官网', link: 'https://piik.tv/?lang=zh-CN' }, { text: '在线使用', link: 'https://demo.piik.tv' }],
+        nav: [{ text: '官网', link: 'https://piik.ferxa1.com/?lang=zh-CN' }, { text: '在线使用', link: 'https://demo.piik.ferxa1.com' }],
         outline: { level: [2, 3], label: '本页内容' },
         docFooter: { prev: '上一页', next: '下一页' },
         editLink: { pattern: editPattern, text: '在 GitHub 上改进此页' },
@@ -65,7 +65,7 @@ export default defineConfig({
   },
   themeConfig: {
     siteTitle: false,
-    nav: [{ text: 'Website', link: 'https://piik.tv/?lang=en' }, { text: 'Use online', link: 'https://demo.piik.tv' }],
+    nav: [{ text: 'Website', link: 'https://piik.ferxa1.com/?lang=en' }, { text: 'Use online', link: 'https://demo.piik.ferxa1.com' }],
     socialLinks: [{ icon: 'github', link: repository }],
     outline: [2, 3],
     editLink: {

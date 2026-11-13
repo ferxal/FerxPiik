@@ -1,4 +1,4 @@
-// Command piik-server is the Hosted Piik entry point: it loads the
+// Command piik-server is the Hosted FerxLet entry point: it loads the
 // environment, serves the embedded Browser UI together with the signaling and
 // room API, and performs ordered process shutdown.
 //
@@ -84,7 +84,7 @@ func serve(debug bool) (returnedErr error) {
 		var err error
 		recorder, err = diagnostics.Open(serverLogDirectory(), "server", BuildRevision)
 		if err != nil {
-			return fmt.Errorf("Piik server diagnostics are unavailable: %w", err)
+			return fmt.Errorf("FerxLet server diagnostics are unavailable: %w", err)
 		}
 		logger = slog.New(slog.NewMultiHandler(logger.Handler(), recorder.Logger().Handler()))
 		previous, previousWriter, previousFlags := slog.Default(), log.Writer(), log.Flags()
@@ -92,7 +92,7 @@ func serve(debug bool) (returnedErr error) {
 		dependencyLog := diagnostics.Writer("stdlib")
 		log.SetOutput(dependencyLog)
 		log.SetFlags(previousFlags)
-		fmt.Fprintln(os.Stderr, "Piik diagnostic log:", recorder.LogPath())
+		fmt.Fprintln(os.Stderr, "FerxLet diagnostic log:", recorder.LogPath())
 		stopExport := watchDiagnosticExport(recorder)
 		defer func() {
 			stopExport()
@@ -134,7 +134,7 @@ func serve(debug bool) (returnedErr error) {
 	if err != nil {
 		return err
 	}
-	logger.Info("Piik server is listening", "event", "ready", "version", BuildVersion, "revision", BuildRevision,
+	logger.Info("FerxLet server is listening", "event", "ready", "version", BuildVersion, "revision", BuildRevision,
 		"host", configuration.ListenHost, "port", port, "publicUrl", config.Origin(configuration.PublicBaseURL),
 		"sqlite", configuration.RoomDatabasePath != "", "siteAccessProtected", configuration.SiteAccessPassword != "",
 		"sfu", configuration.SFU != nil, "natPrediction", configuration.NATPredictionEnabled)
@@ -190,10 +190,10 @@ func serverLogDirectory() string {
 func exportServerDiagnostics(recorder *diagnostics.Recorder) error {
 	path, err := recorder.Export()
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "Piik diagnostic export failed:", err)
+		fmt.Fprintln(os.Stderr, "FerxLet diagnostic export failed:", err)
 		return err
 	}
-	fmt.Fprintln(os.Stderr, "Piik diagnostic bundle:", path)
+	fmt.Fprintln(os.Stderr, "FerxLet diagnostic bundle:", path)
 	return nil
 }
 

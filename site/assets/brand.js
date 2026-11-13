@@ -19,7 +19,7 @@ export function mascotMarkup(id, fill = 'none', animated = false) {
 }
 
 export function brandMarkup(id) {
-  return `<svg class="mascot lr-brand-mark is-once is-drawing" viewBox="0 0 32 32" aria-hidden="true">${mascotMarkup(id, 'none', true)}</svg><span>Piik<span class="identity-dot">.</span></span>`;
+  return `<svg class="mascot lr-brand-mark is-once is-drawing" viewBox="0 0 32 32" aria-hidden="true">${mascotMarkup(id, 'none', true)}</svg><span>FerxLet<span class="identity-dot">.</span></span>`;
 }
 
 export function bindBrandMotion(graphic) {

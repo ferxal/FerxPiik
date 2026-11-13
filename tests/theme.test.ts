@@ -11,9 +11,9 @@ afterEach(() => {
 describe("theme preference", () => {
   it("keeps room state compact and the product name first", () => {
     expect(composeDocumentTitle("7063", "Sharing")).toBe(
-      "Piik | 7063 · Sharing",
+      "FerxLet | 7063 · Sharing",
     );
-    expect(composeDocumentTitle()).toBe("Piik");
+    expect(composeDocumentTitle()).toBe("FerxLet");
   });
 
   it("follows the system until the user chooses explicitly", async () => {

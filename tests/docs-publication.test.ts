@@ -33,7 +33,7 @@ describe("reader documentation publication", () => {
     expect(githubSlug("Join a friend's room")).toBe("join-a-friends-room");
     expect(githubSlug("2. Enable HTTPS")).toBe("2-enable-https");
     expect(githubSlug("可选：启用媒体兜底")).toBe("可选启用媒体兜底");
-    expect(githubSlug("Piik &amp; **friends**")).toBe("piik-friends");
+    expect(githubSlug("FerxLet &amp; **friends**")).toBe("ferxlet-friends");
   });
 
   it("keeps translated guides and anchors local, while linking unpublished references to their source", () => {
@@ -42,9 +42,9 @@ describe("reader documentation publication", () => {
     expect(documentLink("./getting-started.md#share-with-piik-app", guide)).toBe("./../getting-started.html#share-with-piik-app");
     expect(documentLink("/docs/operations/self-hosting.zh-CN.md", guide)).toBe("./self-hosting.html");
     expect(documentLink("../standards/configuration.md#diagnostics", guide))
-      .toBe("https://github.com/TNTcraftHIM/Piik/blob/main/docs/standards/configuration.md#diagnostics");
-    expect(documentLink("../todo.md", guide)).toBe("https://github.com/TNTcraftHIM/Piik/blob/main/docs/todo.md");
-    for (const href of ["#选择-app-模式", "?lang=en", "https://demo.piik.tv", "mailto:example@example.com"]) {
+      .toBe("https://github.com/ferxal/FerxPiik/blob/main/docs/standards/configuration.md#diagnostics");
+    expect(documentLink("../todo.md", guide)).toBe("https://github.com/ferxal/FerxPiik/blob/main/docs/todo.md");
+    for (const href of ["#选择-app-模式", "?lang=en", "https://demo.piik.ferxa1.com", "mailto:example@example.com"]) {
       expect(documentLink(href, guide)).toBe(href);
     }
   });

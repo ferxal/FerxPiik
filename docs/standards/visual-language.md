@@ -1,6 +1,6 @@
 # Visual Language
 
-This is the single design requirement for Piik's shared Web/App interface:
+This is the single design requirement for FerxLet's shared Web/App interface:
 control/surface selection, illustration, semantic colour, motion and guidance.
 New UI work follows this file and the local `/__tooltip-preview` catalogue.
 [Media status](./media-status.md) owns which facts justify each status;
@@ -12,7 +12,7 @@ sequences, and literal scene objects for people, rooms and media. Glyphs do not
 form sentences. The same meaning and visual hierarchy must work in Chinese,
 English and pure-visual modes, in both themes and at narrow widths.
 
-Piik's living room uses simple silhouettes, generous space, rounded controls
+FerxLet's living room uses simple silhouettes, generous space, rounded controls
 and a small responsive bounce. Clear hierarchy and legible interaction keep
 the playful details easy to use.
 The [copy guide](./naming.md#voice-and-terminology) owns its voice.
@@ -848,7 +848,7 @@ stationary and manually scrollable instead of discarding the hidden words.
 
 [Fluent toolbars](https://fluent2.microsoft.design/components/web/react/core/toolbar/usage)
 and [Atlassian navigation layout](https://atlassian.design/components/navigation-system/layout/code)
-distinguish directly available actions from overflow. Piik applies those priorities
+distinguish directly available actions from overflow. FerxLet applies those priorities
 through its existing controls and layout owners, not a second toolbar framework.
 
 [Radix colour roles](https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale)
@@ -866,7 +866,7 @@ defines the shared selection, focus and keyboard contract.
 [GNOME popovers](https://developer.gnome.org/hig/patterns/containers/popovers.html)
 and [utility panes](https://developer.gnome.org/hig/patterns/containers/utility-panes.html)
 distinguish brief contextual adjustments from tools alongside the main view.
-Piik's floating/detached tool choice applies that distinction to watching and
+FerxLet's floating/detached tool choice applies that distinction to watching and
 remote input; [Document Picture-in-Picture](https://developer.chrome.com/docs/web-platform/document-picture-in-picture)
 supplies the optional native window and its lifetime boundary.
 
@@ -887,5 +887,5 @@ moving the pointer away.
 
 [Carbon loading guidance](https://carbondesignsystem.com/components/loading/usage/)
 supports avoiding competing indicators and keeping required user actions distinct
-from passive loading. Piik's selected waiting captions and fifteen-second cadence are its
+from passive loading. FerxLet's selected waiting captions and fifteen-second cadence are its
 own presentation choice.

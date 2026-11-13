@@ -93,8 +93,8 @@ const copy = {
     image: roomIllustration.alt,
   },
   'zh-CN': {
-    title: 'Piik — 免费开源的屏幕共享',
-    description: 'Piik 是免费开源的私密屏幕共享工具，适合游戏直播、一起看电影、展示绘画和照片。支持自部署站点，邀请最多 20 位朋友通过浏览器观看。',
+    title: 'FerxLet — 免费开源的屏幕共享',
+    description: 'FerxLet 是免费开源的私密屏幕共享工具，适合游戏直播、一起看电影、展示绘画和照片。支持自部署站点，邀请最多 20 位朋友通过浏览器观看。',
     image: '戴着小金冠的房主分享 RPG 游戏、绘画、旅行照片和动画电影，三位朋友坐在沙发上观看。',
   },
 };
@@ -116,7 +116,7 @@ function setLanguage(lang) {
   for (const link of document.querySelectorAll('[data-doc-page]')) {
     link.href = `./docs/${chinese ? 'zh/' : ''}${link.dataset.docPage}${chinese ? '' : '?lang=en'}`;
   }
-  filmFrame.title = chinese ? 'Piik 宣传片' : 'Piik introduction';
+  filmFrame.title = chinese ? 'FerxLet 宣传片' : 'FerxLet introduction';
   syncThemeControl();
   syncWelcome();
   syncFilmPreferences();

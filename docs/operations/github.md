@@ -20,8 +20,8 @@ templates live in `.github/`; [naming](../../CONTRIBUTING.md#commit-pr-and-branc
 is shared with automatic version selection.
 
 These protections are active, including conversation resolution. GitHub Pages
-uses the **GitHub Actions** publishing source and the `piik.tv` custom domain;
-the repository homepage points to `https://piik.tv`. The dedicated Website
+uses the **GitHub Actions** publishing source and the `piik.ferxa1.com` custom domain;
+the repository homepage points to `https://piik.ferxa1.com`. The dedicated Website
 workflow publishes the static site under [website operations](./website.md).
 
 ## Enable Automatic Publication Once
@@ -29,7 +29,7 @@ workflow publishes the static site under [website operations](./website.md).
 Before enabling, accept the release packages, compatibility baseline, public
 copy and repository visibility; finish main protection. Then set repository
 Actions variable `PIIK_RELEASES_ENABLED` to `true`. This is a repository setting,
-not an environment variable for Piik App or Server.
+not an environment variable for FerxLet App or Server.
 
 Subsequent accepted PRs merged to main use the existing CI workflow. Product
 changes calculate one version, validate, package Server and all App targets,
@@ -63,7 +63,7 @@ must not replace a newer release's `latest` designation.
 To stop future automatic publication, remove/set false the activation variable;
 this does not alter existing releases or a currently running workflow. Inspect
 the active run separately. No pipeline step changes visibility or installs an
-update into a running Piik deployment.
+update into a running FerxLet deployment.
 
 For accepted contribution PRs that should merge without a release, set
 `PIIK_RELEASES_ENABLED=false` before merging and confirm no active publishing
@@ -75,13 +75,13 @@ release or version-record commit is needed.
 
 ## Container Registry
 
-The Server image uses `ghcr.io/tntcrafthim/piik`. The publishing job authenticates
+The Server image uses `ghcr.io/ferxal/ferxpiik`. The publishing job authenticates
 with `GITHUB_TOKEN` and `packages: write`; no additional registry secret is needed.
 The image's source label links it to this repository. GitHub's
 [Container registry guide](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry)
 owns the registry permission and visibility behavior.
 
-At first publication, set the Piik container package's visibility to **public**
+At first publication, set the FerxLet container package's visibility to **public**
 in its GitHub package settings; repository visibility alone does not do this.
 Verify both its version tag and `latest` with an anonymous pull before announcing
 the Docker download. Keep repository Actions access enabled for later releases.
@@ -90,7 +90,7 @@ Image checks, version identity and retries follow
 
 ## AtomGit Download Mirror
 
-[AtomGit TNTcraftHIM/Piik](https://atomgit.com/TNTcraftHIM/Piik) is the public
+[AtomGit ferxal/FerxPiik](https://atomgit.com/ferxal/FerxPiik) is the public
 source and Release mirror. GitHub owns development, issues and original packages.
 AtomGit's configured repository synchronization handles branches, tags and commits;
 the **AtomGit mirror** GitHub workflow separately copies published binary assets.
@@ -128,7 +128,7 @@ integrity failure and is never silently replaced.
 For recovery, rerun **AtomGit mirror** with the original publishing CI run ID:
 
 ```sh
-gh workflow run atomgit-mirror.yml --repo TNTcraftHIM/Piik --ref main -f run_id=RUN_ID
+gh workflow run atomgit-mirror.yml --repo ferxal/FerxPiik --ref main -f run_id=RUN_ID
 ```
 
 The run ID is optional for a manual status check; without it, the workflow uses

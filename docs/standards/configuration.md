@@ -67,7 +67,7 @@ Automatic SFU fallback runs inside the Hosted process when `SFU_UDP_PORT` is set
 | --- | --- |
 | `SFU_UDP_PORT` | Optional UDP media port `1..65535`; unset or blank disables SFU and fixes Privacy mode on for every room. Set `7882` for the standard public listener and allow the Host to choose Privacy mode. |
 | `SFU_LISTEN_HOST` | IPv4 bind address, default `0.0.0.0`; independent of HTTP `LISTEN_HOST`. Read only when SFU is enabled. |
-| `SFU_PUBLIC_IP` | Optional advertised IPv4 address or DNS hostname for a host behind NAT. A hostname resolves at startup and every minute; new media connections use the latest successful IPv4 result without restarting Piik. Forward the same UDP port as `SFU_UDP_PORT`. Read only when SFU is enabled. |
+| `SFU_PUBLIC_IP` | Optional advertised IPv4 address or DNS hostname for a host behind NAT. A hostname resolves at startup and every minute; new media connections use the latest successful IPv4 result without restarting FerxLet. Forward the same UDP port as `SFU_UDP_PORT`. Read only when SFU is enabled. |
 | `SFU_ONLY` | `false` by default. `true` requires `SFU_UDP_PORT` and sends every room through SFU, without Peer candidates or background P2P convergence. Applies after Server restart. |
 
 SFU control uses the application's authenticated signaling connection. No
@@ -101,16 +101,16 @@ environment file cannot silently drop a deployment out of production. The
 private deployment uses its scoped atomic updater. Supported public upgrades and
 any compatibility handling follow the active [versioning contract](./versioning.md).
 
-## Piik App Configuration
+## FerxLet App Configuration
 
-Piik App stores `Piik/client.json` under the operating system's user configuration
+FerxLet App stores `Piik/client.json` under the operating system's user configuration
 directory (`%APPDATA%` on Windows, `~/Library/Application Support` on macOS,
 and `$XDG_CONFIG_HOME` or `~/.config` on Linux). The App manages its `version`
 schema field. The user settings are:
 
 | Setting | Contract |
 | --- | --- |
-| `site` / `sites` | The first approved Piik Site origin and optional additional origins. Local confirmation or explicit `--site` adds approval without replacing other sites; the launcher revokes each independently. Existing single-site configuration remains valid. |
+| `site` / `sites` | The first approved FerxLet Site origin and optional additional origins. Local confirmation or explicit `--site` adds approval without replacing other sites; the launcher revokes each independently. Existing single-site configuration remains valid. |
 | `localAccessPassword` | Empty by default. Optional password for the App's Local room authority, with the same exact-match behavior as `SITE_ACCESS_PASSWORD`. It is separate from a hosted site's password. |
 
 Before rolling back to an App that supports only one approved Site, revoke all
@@ -135,7 +135,7 @@ the App's numeric UDP port (default `8787`). This lets Browsers
 discover usable addresses on routed virtual LANs without relying on multicast
 name discovery or contacting a public STUN service. HTTP and STUN have one
 application startup/shutdown owner; public-link mode does not bind this LAN
-endpoint. Allow Piik through the firewall on the selected network for both TCP
+endpoint. Allow FerxLet through the firewall on the selected network for both TCP
 and UDP; STUN carries address discovery, not shared media.
 
 For example, in PowerShell, set `$env:PIIK_STUN_URLS = 'stun:your-stun.example:3478'`
@@ -302,10 +302,10 @@ project references and the reasons for this collection boundary.
 | Port | Scope | Owner |
 | ---: | --- | --- |
 | TCP 80/443 | public | HTTP redirect and HTTPS/WSS reverse proxy |
-| UDP 3478 | public | in-process STUN-only Piik listener |
-| UDP 3479/3480 | public when NAT prediction is enabled | in-process auxiliary STUN-only Piik listeners |
-| UDP 7882 (or `SFU_UDP_PORT`) | public when SFU enabled | in-process Piik WebRTC media |
-| TCP 8787 | private behind a proxy, or reachable within the chosen LAN for direct HTTPS | Piik application |
+| UDP 3478 | public | in-process STUN-only FerxLet listener |
+| UDP 3479/3480 | public when NAT prediction is enabled | in-process auxiliary STUN-only FerxLet listeners |
+| UDP 7882 (or `SFU_UDP_PORT`) | public when SFU enabled | in-process FerxLet WebRTC media |
+| TCP 8787 | private behind a proxy, or reachable within the chosen LAN for direct HTTPS | FerxLet application |
 
 TCP 3478, TCP/TLS 5349, TURN relay ranges, media TCP, and other media
 ports remain closed. HTTPS/WSS transport is independent of the UDP-only media
@@ -315,7 +315,7 @@ When `NAT_PREDICTION_ENABLED=true`, the server derives
 `stun:<same-hostname>:3479` and `:3480` from the first ordinary STUN authority
 on UDP 3478. Current pages use the advertised capability automatically unless
 the site requires SFU-only media. It adds no media route or third-party service. It needs both
-cloud security-group rules and the host firewall. Piik
+cloud security-group rules and the host firewall. FerxLet
 binds every required UDP listener before opening room persistence or accepting
 signaling; a bind failure rolls back all newly owned sockets. Close and End
 retire these listeners with the application. No other service may own the same

@@ -26,7 +26,7 @@ export function AppReleaseNotice({ update }: { update: ReleaseUpdateNotice }) {
         {vis && <span aria-hidden="true">{update.version}</span>}
       </a>
     </Tooltip>
-    <a className="lr-client-release-mirror" href="https://atomgit.com/TNTcraftHIM/Piik/releases"
+    <a className="lr-client-release-mirror" href="https://atomgit.com/ferxal/FerxPiik/releases"
       target="_blank" rel="noopener noreferrer" aria-label={t("client.update.downloads")}>
       {vis ? <>AtomGit <Glyph name="arrowDown" size={14} /></> : t("client.update.downloads")}
       <span aria-hidden="true"> ↗</span>

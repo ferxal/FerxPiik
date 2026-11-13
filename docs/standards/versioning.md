@@ -96,7 +96,7 @@ those policies does not require another count-specific capability flag.
 Representation acceptance still requires local operation/resource admission;
 it is not a promise that every same-major peer can produce a new media format.
 
-Native discovery distinguishes an incompatible Piik App from an absent App and
+Native discovery distinguishes an incompatible FerxLet App from an absent App and
 reports protocol numbers to local diagnostics; the source picker offers update/
 refresh guidance and Browser operation. Do not reload, reinstall or interrupt
 an active share just because an unrelated product/build label changed.
@@ -139,7 +139,7 @@ and standalone `.sha256` files remain build/deployment inputs in the local outpu
 and CI artifacts; publishers validate them but do not upload them to GitHub or
 AtomGit Releases. The release body includes a collapsed full source SHA and
 SHA-256 listing generated from the verified packages. GitHub's automatic source
-archives are separate from Piik's uploaded packages. Retain original build
+archives are separate from FerxLet's uploaded packages. Retain original build
 metadata with operator deployment records as described in [deployment](../deployment.md).
 
 Update checks compare actual release precedence. The App reports its compiled
@@ -251,7 +251,7 @@ introduced by this policy.
 
 ## Container Distribution
 
-`ghcr.io/tntcrafthim/piik` wraps the same verified linux/amd64 and linux/arm64
+`ghcr.io/ferxal/ferxpiik` wraps the same verified linux/amd64 and linux/arm64
 Server archives as the GitHub release. The packager's optional
 `--container-image <tag>` builds from that architecture's extraction;
 CI checks its Compose recipe on the matching native runner and transfers the verified image
@@ -298,18 +298,18 @@ remain unchanged. An exact tag does not move
 the changelog's starting point. Keep no `CHANGELOG.md`, versioned note directory
 or generated history commits. PRs and Git retain editorial provenance.
 
-Keep the Release title `Piik vX.Y.Z`. The body may open with one short bilingual
+Keep the Release title `FerxLet vX.Y.Z`. The body may open with one short bilingual
 editorial headline. Its lifetime is independent of semver: keep, replace or omit
 it based on what is worth telling readers, not whether the version is a patch
 or minor update. An already-published feature, a verified community milestone,
-thanks or an occasional light aside can lead. Keep Piik's friendly tone without
+thanks or an occasional light aside can lead. Keep FerxLet's friendly tone without
 forced jokes; never turn an old feature into a claim that it is new in this
 update, advertise an unfinished prototype or trivialize a serious failure.
 
 When used, open with a short bold title followed by one plain paragraph explaining
 that headline's concrete meaning. Write the complete English pair first, then the
-Chinese pair. For example: **Play together. Your turn!** / Piik now supports
-remote control and remote co-play; **远程同乐，轮到你啦！** / Piik 现已支持远程控制与远程同乐。
+Chinese pair. For example: **Play together. Your turn!** / FerxLet now supports
+remote control and remote co-play; **远程同乐，轮到你啦！** / FerxLet 现已支持远程控制与远程同乐。
 The explanation states the feature or fact, rather than adding another slogan;
 it does not replace the description of this update below. Keep each title and
 explanation to one authored line, using plain text inside `**...**` and the
@@ -342,16 +342,16 @@ preserves authored Markdown and appends identity/checksums; it does not infer an
 editorial summary from a version number. Keep provenance and the full changelog
 link after the user-facing explanation.
 
-Piik's release scope and upgrade instructions come from its own accepted changes.
+FerxLet's release scope and upgrade instructions come from its own accepted changes.
 Editorial references reviewed on 2026-10-19: [Discord's update](https://discord.com/blog/discord-update-september-25-2026)
 combines a friendly voice with concrete changes; [VS Code's version notes](https://code.visualstudio.com/updates/v1_95)
 keep feature highlights alongside subsequent patch fixes. These inform the
-presentation, not Piik's version selection or feature claims.
+presentation, not FerxLet's version selection or feature claims.
 
 ## Release Sources
 
 GitHub Releases is the primary publication. The public
-[AtomGit project](https://atomgit.com/TNTcraftHIM/Piik) mirrors source branches,
+[AtomGit project](https://atomgit.com/ferxal/FerxPiik) mirrors source branches,
 tags and commits through its configured repository synchronization. Release
 metadata and binary attachments are published separately; Git synchronization
 alone does not make packages available.
@@ -395,13 +395,13 @@ limits stay in [verification status](../verification-status.md).
   declared public API; build metadata does not determine precedence.
 - [Syncthing releases](https://docs.syncthing.net/users/releases.html) and
   [BEP](https://docs.syncthing.net/specs/bep-v1.html): product versions, peer
-  protocol and storage/upgrade behavior are distinct. Piik does not adopt its
+  protocol and storage/upgrade behavior are distinct. FerxLet does not adopt its
   minor-release REST-breaking exception for the protected interfaces above.
 - [Go compatibility](https://go.dev/doc/go1compat): name the protected contract
   and its limits instead of promising universal binary/runtime compatibility.
 - [Debug Adapter Protocol evolution](https://microsoft.github.io/debug-adapter-protocol/overview.html):
   stable baseline messages and explicit optional capabilities allow independent
-  endpoints to evolve. Piik uses that principle within its existing WebSocket/JSON
+  endpoints to evolve. FerxLet uses that principle within its existing WebSocket/JSON
   contracts; it does not replace them with DAP or a generic negotiation framework.
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) provides
   the small release-intent vocabulary; standard SemVer libraries perform ordering.

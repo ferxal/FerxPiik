@@ -1,4 +1,4 @@
-// Package bridge binds mobile capture to Piik's existing native session.
+// Package bridge binds mobile capture to FerxLet's existing native session.
 package bridge
 
 import (

@@ -33,7 +33,7 @@ checks the Browser, `scripts/tsconfig.json` checks tooling/tests, and root
 | `.github/`, `.githooks/`, `.agents/`, `.codex/` | Platform automation and scoped agent/tool integration |
 | `build/`, `node_modules/`, `coverage/` | Ignored local output and dependencies; never current product truth |
 
-`site/` introduces Piik; `src/client/` is Piik's interactive application.
+`site/` introduces FerxLet; `src/client/` is FerxLet's interactive application.
 `internal/app/nativecapture` owns the desktop helper process and frame contract;
 `native/capture/` implements its platform APIs. `nativehost` consumes a capture
 stream; the Android App supplies that stream in-process through `mobile/`.

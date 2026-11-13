@@ -30,7 +30,7 @@ import {
 
 const ROOT = resolve(import.meta.dirname, "..");
 const BUILD_ROOT = join(ROOT, "build", "go-check");
-export const SOURCE_TITLE = "Piik Native Gate Source";
+export const SOURCE_TITLE = "FerxLet Native Gate Source";
 
 type GateMode = "local" | "one-link";
 type VideoCodec = "h264" | "vp8";

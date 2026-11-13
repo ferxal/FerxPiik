@@ -2,7 +2,7 @@ import { execFileSync } from "node:child_process";
 import { appendFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 
-const repository = "TNTcraftHIM/Piik";
+const repository = "ferxal/FerxPiik";
 export async function readMirror(path) {
   const response = await fetch(`https://api.atomgit.com/api/v5/repos/${repository}${path}`, {
     redirect: "error", signal: AbortSignal.timeout(30_000), headers: { Accept: "application/json" },

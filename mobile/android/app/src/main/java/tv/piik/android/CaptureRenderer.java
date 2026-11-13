@@ -41,7 +41,7 @@ final class CaptureRenderer {
 
   final Handler callbacks;
   final Consumer<RuntimeException> failedInitialization;
-  final HandlerThread thread = new HandlerThread("Piik capture GL");
+  final HandlerThread thread = new HandlerThread("FerxLet capture GL");
   final Handler gl;
   final Set<Target> targets = new HashSet<>();
   final float[] transform = new float[16];

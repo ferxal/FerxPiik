@@ -72,7 +72,7 @@ export const STRINGS = {
     // facts
     facts: [['免费 · 开源', 'FREE & OPEN SOURCE'], ['点链接，浏览器直接看', 'VIEWERS JUST OPEN A LINK'], ['最多 20 位观众', 'UP TO 20 VIEWERS'], ['低延迟 · 高可用', 'LOW LATENCY · HIGH AVAILABILITY'], ['资源占用低', 'LIGHT ON RESOURCES']],
     // end
-    endCard: { l1: zhChars('来，看点'), l2: zhChars('好康的。'), sign: '—— Piik' },
+    endCard: { l1: zhChars('来，看点'), l2: zhChars('好康的。'), sign: '—— FerxLet' },
     tagline: ['来，看点好康的。', 'SHARE THE GOOD STUFF.'],
     closingFeatures: ['一起看', '随时聊', '换你玩'],
     footer: '免费开源 · 点击即用 · 支持自部署',
@@ -133,7 +133,7 @@ export const STRINGS = {
     settings: { title: 'Settings', rows: ['Display', 'Sound', 'Network', 'Account'], tip: 'Mom, click here' },
     anything: ['IF IT\'S ON YOUR SCREEN, SHARE IT.', ''],
     facts: [['FREE & OPEN SOURCE', ''], ['FRIENDS JUST OPEN A LINK', ''], ['UP TO 20 VIEWERS', ''], ['LOW LATENCY · HIGH AVAILABILITY', ''], ['LIGHT ON RESOURCES', '']],
-    endCard: { l1: ['SHARE', 'THE'], l2: ['GOOD', 'STUFF', '.'], sign: '— Piik' },
+    endCard: { l1: ['SHARE', 'THE'], l2: ['GOOD', 'STUFF', '.'], sign: '— FerxLet' },
     tagline: ['Share the good stuff.', ''],
     closingFeatures: ['WATCH TOGETHER', 'TALK IT OUT', 'TAKE A TURN'],
     footer: 'Free &amp; open source · Ready to use · Self-host if you like',

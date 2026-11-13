@@ -22,7 +22,7 @@ node scripts/sync-upstream.mjs --source <fork URL or local clone> \
   --upstream <official URL or local clone> --base <official base> \
   --head <patch commit> --out <new directory> [--onto <upstream ref>]
 
-Only the new directory is written. Existing clones, Piik pins and remotes stay
+Only the new directory is written. Existing clones, FerxLet pins and remotes stay
 unchanged. Git replays the patch range; conflicts remain in the candidate for
 review. No push, package installation, build or dependency update is performed.
 The report and range-diff are saved inside the candidate's .git directory.`);

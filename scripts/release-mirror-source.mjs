@@ -3,7 +3,7 @@ import { appendFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 import { isReleaseVersion } from "./release-version.mjs";
 
-const repository = "TNTcraftHIM/Piik";
+const repository = "ferxal/FerxPiik";
 const gh = (path) => JSON.parse(execFileSync("gh", ["api", `repos/${repository}/${path}`], {
   encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 30_000,
 }));

@@ -8,12 +8,12 @@ own behavior; research and Git/PRs own evidence and completed history.
 ## Now
 
 - [ ] **Windows sound only works with exclusion (#534).** Compare the affected
-  application's playback endpoint with Piik's default-endpoint capture. The
+  application's playback endpoint with FerxLet's default-endpoint capture. The
   [audio scope control](./research/native-client-media.md#windows-audio-exclusion)
   reproduces the contrast with another output device; locate the reporter's
   first failing transition before changing the capture owner.
 - [ ] **Blue-tinted sharing (#529).** Identify the source and affected receive
-  path from [#529](https://github.com/TNTcraftHIM/Piik/issues/529): Piik version,
+  path from [#529](https://github.com/ferxal/FerxPiik/issues/529): FerxLet version,
   platform, capture choice and matching source/Viewer screenshots. Compare
   those pixels with the existing colour controls; increased bitrate did not
   resolve the reported tint.
@@ -39,11 +39,11 @@ own behavior; research and Git/PRs own evidence and completed history.
   [end-to-end control](./research/webrtc-encoder-pool.md#h264-burst-and-recovery)
   locates the delay and rejects the one-frame HRD override that prevents recovery.
 - [ ] **Linux capture ends after selection (#499).** Follow
-  [#499](https://github.com/TNTcraftHIM/Piik/issues/499) on niri/Wayland with
+  [#499](https://github.com/ferxal/FerxPiik/issues/499) on niri/Wayland with
   GStreamer NVENC. The Browser report records capture ending before connection
   cleanup; obtain the native capture failure to distinguish the encoder and Portal.
 - [ ] **Mouse input stops when Host Chrome is minimized (#502).** Follow
-  [#502](https://github.com/TNTcraftHIM/Piik/issues/502) on the original Windows
+  [#502](https://github.com/ferxal/FerxPiik/issues/502) on the original Windows
   host. The supplied v2.5.2 reports retain the grant and receive authorized mouse
   events, but Windows `SendInput` rejects a button event and subsequent release
   attempts. Capture whether local physical input also stops during the refusal
@@ -51,7 +51,7 @@ own behavior; research and Git/PRs own evidence and completed history.
   backlog; the local controlled Chrome trial did not reproduce the failure.
 - [ ] **Return LiveKit to an upstream pin.** Follow
   [upstream #5016](https://github.com/livekit/livekit/pull/5016). Once upstream
-  supplies the allocator input Piik needs, verify recovery and remove the
+  supplies the allocator input FerxLet needs, verify recovery and remove the
   temporary replacement. [Dependency provenance](../internal/thirdparty/README.md#local-encoder-probe-demand)
   owns the patch and removal boundary.
 - [ ] **Return Pion to an upstream pin.** Follow
@@ -63,7 +63,7 @@ own behavior; research and Git/PRs own evidence and completed history.
 ## Next
 
 - [ ] **Stronger microphone noise suppression (#518).** Assess the
-  [requested speech-processing option](https://github.com/TNTcraftHIM/Piik/issues/518)
+  [requested speech-processing option](https://github.com/ferxal/FerxPiik/issues/518)
   through the shared microphone input. Browser voice processing is already the
   default; keep screen and system audio unprocessed.
 - [ ] **3.0 semantic reconstruction.** Continue the isolated `feat/channel-prototype`
@@ -104,7 +104,7 @@ own behavior; research and Git/PRs own evidence and completed history.
   gate; desktop permissions and game recognition need physical checks. macOS
   virtual HID needs an entitled App and macOS SDK/runtime checks. The
   [co-play assessment](./research/room-interactions.md#remote-co-play) owns
-  platform evidence; Piik does not bundle or install optional input drivers.
+  platform evidence; FerxLet does not bundle or install optional input drivers.
 - **Platform output.** A registered receiver may act as an ordinary Viewer after
   the [platform-output gate](./research/platform-output.md) passes.
 - **Additional languages.** Review community catalogs and rendered UI through
@@ -113,7 +113,7 @@ own behavior; research and Git/PRs own evidence and completed history.
   sign executables before archive checksums. Signing does not guarantee the end
   of antivirus cloud scanning.
 - **macOS distribution signing.** Developer ID signing and Apple notarization
-  need an Apple Developer identity. [#489](https://github.com/TNTcraftHIM/Piik/issues/489)
+  need an Apple Developer identity. [#489](https://github.com/ferxal/FerxPiik/issues/489)
   reports first-launch blocking; the troubleshooting guide provides a scoped
   opening procedure, not a signing fix. Verify downloaded bundles on a Mac when
   signing becomes available.

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const WEBSITE = "https://piik.tv";
+const WEBSITE = "https://piik.ferxa1.com";
 let availability: Promise<boolean> | undefined;
 
 /** Optional help/download navigation only; never gates App or room startup. */

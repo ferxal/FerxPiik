@@ -16,7 +16,7 @@ const files = artifacts.files.map((file) => file.path);
 if (option === "--dry-run") {
   process.stdout.write(`${JSON.stringify({ version, revision, targets: artifacts.targets, files: files.length })}\n`);
 } else {
-  const repository = process.env.GITHUB_REPOSITORY || "TNTcraftHIM/Piik";
+  const repository = process.env.GITHUB_REPOSITORY || "ferxal/FerxPiik";
   const gh = (...args) => execFileSync("gh", args, { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
   function verifyTag(required = false) {
     // A successful empty match is absence; API/authentication errors must fail.
@@ -71,7 +71,7 @@ if (option === "--dry-run") {
   try {
     if (!existing) {
       gh("release", "create", version, "--repo", repository, "--target", revision,
-        "--draft", "--title", `Piik ${version}`, "--notes-file", notes);
+        "--draft", "--title", `FerxLet ${version}`, "--notes-file", notes);
     } else {
       gh("release", "edit", version, "--repo", repository, "--notes-file", notes);
     }

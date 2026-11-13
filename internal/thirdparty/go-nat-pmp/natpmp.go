@@ -1,4 +1,4 @@
-// Modified by Piik: context-aware requests; the original API delegates to them.
+// Modified by FerxLet: context-aware requests; the original API delegates to them.
 package natpmp
 
 import (

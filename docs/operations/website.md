@@ -7,16 +7,16 @@ The static website source is `site/`. Its content and design follow the
 
 | Entry | Destination |
 | --- | --- |
-| Website | [piik.tv](https://piik.tv) |
-| P2P-only demo on the separate US server | [demo.piik.tv](https://demo.piik.tv) |
-| App downloads and release notes | [GitHub Releases](https://github.com/TNTcraftHIM/Piik/releases) |
-| Download mirror for domestic access | [AtomGit Releases](https://atomgit.com/TNTcraftHIM/Piik/releases) |
+| Website | [piik.ferxa1.com](https://piik.ferxa1.com) |
+| P2P-only demo on the separate US server | [demo.piik.ferxa1.com](https://demo.piik.ferxa1.com) |
+| App downloads and release notes | [GitHub Releases](https://github.com/ferxal/FerxPiik/releases) |
+| Download mirror for domestic access | [AtomGit Releases](https://atomgit.com/ferxal/FerxPiik/releases) |
 | Documentation source | [Reader guides](../guide/README.md), with a separate [developer map](../README.md) |
 
-GitHub Pages serves `piik.tv` behind
+GitHub Pages serves `piik.ferxa1.com` behind
 Cloudflare; both the GitHub origin and Cloudflare edge use HTTPS. Website and
 Demo HTTP traffic use proxied DNS with origin cache headers respected.
-The separate `stun.piik.tv` hostname stays DNS-only for direct UDP connectivity.
+The separate `stun.piik.ferxa1.com` hostname stays DNS-only for direct UDP connectivity.
 
 GitHub Pages hosts the website's
 [static HTML, CSS and JavaScript](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages).
@@ -45,19 +45,19 @@ without SFU fallback. Use the [self-hosting runbook](./self-hosting.md) with:
 PIIK_ENV=production
 LISTEN_HOST=127.0.0.1
 PORT=8787
-PUBLIC_BASE_URL=https://demo.piik.tv
-ALLOWED_ORIGINS=https://demo.piik.tv
+PUBLIC_BASE_URL=https://demo.piik.ferxa1.com
+ALLOWED_ORIGINS=https://demo.piik.ferxa1.com
 SITE_ACCESS_PASSWORD=
 ROOM_DATABASE_PATH=/var/lib/piik/rooms.sqlite
 ROOM_EMPTY_TIMEOUT_SECONDS=3600
 MAX_VIEWERS_PER_ROOM=20
-STUN_URLS=stun:stun.piik.tv:3478
+STUN_URLS=stun:stun.piik.ferxa1.com:3478
 NAT_PREDICTION_ENABLED=true
 SFU_UDP_PORT=
 ```
 
-Point both hostnames at the US server: proxy `demo.piik.tv` through Cloudflare,
-but leave `stun.piik.tv` DNS-only. Allow UDP 3478/3479/3480 directly to the server;
+Point both hostnames at the US server: proxy `demo.piik.ferxa1.com` through Cloudflare,
+but leave `stun.piik.ferxa1.com` DNS-only. Allow UDP 3478/3479/3480 directly to the server;
 Cloudflare's ordinary HTTP proxy does not carry STUN. Caddy terminates origin
 HTTPS/WSS. The demo uses the
 standard [systemd service](./service-management.md#systemd), with its release
@@ -135,8 +135,8 @@ Preview the built output, not `site/index.html`: the source is a template whose
 shared theme controls and welcome text are filled in by the website build.
 Publish the static `build/site/` output. Vite preview supports HTTP byte ranges
 for seeking the soundtrack. Keep asset links relative so both a custom
-domain and GitHub's `/Piik/` project path work. For a nested deployment, set
-`PIIK_DOCS_BASE=/Piik/docs/` when building; ordinary custom-domain builds use `/docs/`.
+domain and GitHub's `/FerxPiik/` project path work. For a nested deployment, set
+`PIIK_DOCS_BASE=/FerxPiik/docs/` when building; ordinary custom-domain builds use `/docs/`.
 
 The [public-film source](../../site/film/README.md) owns the selected artwork and
 its runtime. The ordinary build includes only A's required runtime, fonts, audio
@@ -243,7 +243,7 @@ each provider's native latest-attachment route:
 - GitHub: `releases/latest/download/asset-name.zip`
   ([documentation](https://docs.github.com/en/repositories/releasing-projects-on-github/linking-to-releases)).
 - AtomGit: `releases/download/latest/asset-name.zip`
-  ([Windows download](https://atomgit.com/TNTcraftHIM/Piik/releases/download/latest/piik-app-windows-amd64.zip)).
+  ([Windows download](https://atomgit.com/ferxal/FerxPiik/releases/download/latest/piik-app-windows-amd64.zip)).
 
 Both links follow provider publication without a website rebuild. Supported App
 architecture choices stay visible; one selection updates both providers' links.
@@ -270,7 +270,7 @@ Verify the latest redirects and package checksums after releases.
 2. In repository **Settings > Pages**, choose **GitHub Actions** as the source.
    Use the dedicated Pages workflow, not publication of the repository root or
    all of `docs/`, which includes developer research and operational reference.
-3. Set the approved `piik.tv` custom domain in Pages settings and configure its
+3. Set the approved `piik.ferxa1.com` custom domain in Pages settings and configure its
    DNS using GitHub's [current domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
    Actions publishing does not need a `CNAME` file in the source tree.
 4. Accepted main pushes run CI first; success triggers **Website**, which checks

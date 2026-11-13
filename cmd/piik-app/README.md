@@ -1,19 +1,19 @@
-# Piik App
+# FerxLet App
 
 English · [简体中文](./README.zh-CN.md) · [Getting started](../../docs/guide/getting-started.md)
 
-Piik App provides local rooms and native screen capture through the Piik web
+FerxLet App provides local rooms and native screen capture through the FerxLet web
 interface in your system Browser.
 
 ## Run A Package
 
 For Android APK installation and the shared browser workflow, follow
-[Getting started](../../docs/guide/getting-started.md#share-with-piik-app).
+[Getting started](../../docs/guide/getting-started.md#share-with-ferxlet-app).
 The package, terminal and command-line instructions below apply to desktop App.
 
 Extract the matching platform bundle in full. On Windows and Linux, keep
 `runtime` beside the App executable and run `piik-app.exe` or `./piik-app`.
-On macOS, open `Piik App.app`; you can move the whole `.app` to Applications.
+On macOS, open `FerxLet App.app`; you can move the whole `.app` to Applications.
 The launcher opens in the system Browser.
 If macOS blocks the first launch, follow the [Mac opening steps](../../docs/guide/troubleshooting.md#macos-blocks-first-launch).
 Linux native capture uses the system dependencies described
@@ -23,11 +23,11 @@ If the page does not open automatically, open the address shown in the terminal
 or press **O** there to retry. Keep the App running while using that page.
 
 macOS native capture requires macOS 13 or newer. Windows App and browser sharing
-are the primary tested paths; [macOS/Linux feedback is welcome](https://github.com/TNTcraftHIM/Piik/issues).
+are the primary tested paths; [macOS/Linux feedback is welcome](https://github.com/ferxal/FerxPiik/issues).
 
 ## Modes
 
-Choose **Local room** or **Public invite**, then **Open Piik**, to start a room
+Choose **Local room** or **Public invite**, then **Open FerxLet**, to start a room
 service. To supply capture to an existing site, leave the launcher open and
 [approve that site](#approved-site).
 
@@ -57,7 +57,7 @@ against the App terminal. Repeat confirmation after App restarts.
 Choose **Public invite**, create a room in the opened browser, and send its invitation.
 The packaged Cloudflare Tunnel helper supplies a temporary `trycloudflare.com`
 HTTPS address. It expires when App closes; a later run gets a new address.
-For a permanent address, use a configured Piik site.
+For a permanent address, use a configured FerxLet site.
 
 Local and Public invite use P2P picture and sound, outside the web tunnel.
 They need a usable UDP media path and provide no server media forwarding (SFU)
@@ -68,12 +68,12 @@ Public invite uses Cloudflare, MiWiFi (Xiaomi) and Bilibili STUN services to
 discover reachable addresses. Each contacted operator can see your public IP,
 port and request timing; these requests contain no media, chat or room password.
 To choose your own STUN services for public invitations, set `PIIK_STUN_URLS`
-before starting App; see [App configuration](../../docs/standards/configuration.md#piik-app-configuration).
+before starting App; see [App configuration](../../docs/standards/configuration.md#ferxlet-app-configuration).
 An approved Site supplies its own `STUN_URLS`; App Local rooms configure no public STUN.
 
 ### Approved Site
 
-Keep App running, click **App** at the top of the Piik site, and confirm its
+Keep App running, click **App** at the top of the FerxLet site, and confirm its
 address on the local approval page. See the [connection steps](../../docs/guide/getting-started.md#use-app-with-an-existing-site).
 
 The launcher lists approved sites:
@@ -114,14 +114,14 @@ starting. Viewer invitations grant access to their room independently; see
 [rooms and access](../../docs/standards/rooms-access.md).
 
 For saved preferences, configuration paths and environment variables, see
-[App configuration](../../docs/standards/configuration.md#piik-app-configuration).
+[App configuration](../../docs/standards/configuration.md#ferxlet-app-configuration).
 To bypass the launcher in development or automation, select a mode explicitly:
 
 | Flag | Mode |
 | --- | --- |
 | `--local` | Local room; add `--lan-address <address>` when several LAN addresses are possible |
 | `--link` | Temporary Public invite |
-| `--site <origin>` | Save and open a Piik Site |
+| `--site <origin>` | Save and open a FerxLet Site |
 
 ## Upgrading
 
@@ -129,15 +129,15 @@ App and site must use the same major version; **2.x and 1.x cannot be used toget
 Different 2.x versions preserve established sharing and viewing. New features
 require support from the relevant App and site.
 
-1. Read the release notes on [GitHub](https://github.com/TNTcraftHIM/Piik/releases/latest)
-   or [AtomGit](https://atomgit.com/TNTcraftHIM/Piik/releases).
+1. Read the release notes on [GitHub](https://github.com/ferxal/FerxPiik/releases/latest)
+   or [AtomGit](https://atomgit.com/ferxal/FerxPiik/releases).
 2. For Local room or Public invite, stop sharing, close App and extract the
    complete new package. Start it and send a fresh invitation.
 3. For a group's site, the administrator [updates Server](../../docs/operations/service-management.md)
    first. Then update connected Apps and refresh all sharing/viewing pages.
 
 The launcher update button downloads the package; the
-[AtomGit mirror](https://atomgit.com/TNTcraftHIM/Piik/releases) is an alternative source. Restarting App or Server interrupts active shares.
+[AtomGit mirror](https://atomgit.com/ferxal/FerxPiik/releases) is an alternative source. Restarting App or Server interrupts active shares.
 
 ## Terminal And Shutdown
 

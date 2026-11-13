@@ -100,7 +100,7 @@ function writeLinuxAssets(packageRoot, entries) {
       "[Desktop Entry]",
       "Version=1.0",
       "Type=Application",
-      "Name=Piik App",
+      "Name=FerxLet App",
       "Exec=piik-app",
       "TryExec=piik-app",
       "Icon=piik-app",
@@ -115,7 +115,7 @@ function writeLinuxAssets(packageRoot, entries) {
 
 function writeMacAssets(packageRoot, version, revision, entries) {
   const bundleVersion = version === "development" ? "0.0.0" : version.slice(1);
-  const bundleRoot = join(packageRoot, "Piik App.app");
+  const bundleRoot = join(packageRoot, "FerxLet App.app");
   const contents = join(bundleRoot, "Contents");
   const macos = join(contents, "MacOS");
   const resources = join(contents, "Resources");
@@ -129,17 +129,17 @@ function writeMacAssets(packageRoot, version, revision, entries) {
       '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">',
       '<plist version="1.0"><dict>',
       "<key>CFBundleDevelopmentRegion</key><string>en</string>",
-      "<key>CFBundleDisplayName</key><string>Piik App</string>",
+      "<key>CFBundleDisplayName</key><string>FerxLet App</string>",
       "<key>CFBundleExecutable</key><string>piik-app</string>",
       "<key>CFBundleIconFile</key><string>piik.icns</string>",
       "<key>CFBundleIdentifier</key><string>tv.piik.app</string>",
       "<key>CFBundleInfoDictionaryVersion</key><string>6.0</string>",
-      "<key>CFBundleName</key><string>Piik App</string>",
+      "<key>CFBundleName</key><string>FerxLet App</string>",
       "<key>CFBundlePackageType</key><string>APPL</string>",
       `<key>CFBundleShortVersionString</key><string>${bundleVersion}</string>`,
       "<key>NSScreenCaptureUsageDescription</key><string>Share a screen or application selected by you.</string>",
       "<key>NSMicrophoneUsageDescription</key><string>Use your microphone for voice communication.</string>",
-      "<key>NSLocalNetworkUsageDescription</key><string>Connect to devices on your local network for Piik rooms and screen sharing.</string>",
+      "<key>NSLocalNetworkUsageDescription</key><string>Connect to devices on your local network for FerxLet rooms and screen sharing.</string>",
       "<key>NSAudioCaptureUsageDescription</key><string>Share sound from the selected screen or application.</string>",
       `<key>CFBundleVersion</key><string>${bundleVersion}</string>`,
       `<key>PiikSourceRevision</key><string>${revision}</string>`,
@@ -163,7 +163,7 @@ export function writeAppPlatformAssets({
   return target.goos === "linux"
     ? "share/applications/piik-app.desktop"
     : target.goos === "darwin"
-      ? "Piik App.app"
+      ? "FerxLet App.app"
       : null;
 }
 

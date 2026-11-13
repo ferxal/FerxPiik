@@ -125,7 +125,7 @@ export function LauncherForm({
       <header className="lr-client-launch-heading">
         <div className="lr-client-launch-brand">
           <BrandMark size={52} motion="once" />
-          <h1 className="lr-client-launch-title">Piik<span className="lr-client-brand-dot">.</span> <small>App</small></h1>
+          <h1 className="lr-client-launch-title">FerxLet<span className="lr-client-brand-dot">.</span> <small>App</small></h1>
         </div>
         <WelcomeLine />
       </header>

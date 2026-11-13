@@ -2,9 +2,9 @@ FROM gcr.io/distroless/static-debian13:nonroot@sha256:e2e927ec666bae08560abb3c55
 ARG PIIK_VERSION=development
 ARG PIIK_REVISION
 ARG PIIK_SERVER_SHA256
-LABEL org.opencontainers.image.title="Piik Server" \
+LABEL org.opencontainers.image.title="FerxLet Server" \
       org.opencontainers.image.description="Private screen sharing with Web, signaling, STUN and optional media fallback." \
-      org.opencontainers.image.source="https://github.com/TNTcraftHIM/Piik" \
+      org.opencontainers.image.source="https://github.com/ferxal/FerxPiik" \
       org.opencontainers.image.licenses="MIT" \
       org.opencontainers.image.version=$PIIK_VERSION \
       org.opencontainers.image.revision=$PIIK_REVISION \

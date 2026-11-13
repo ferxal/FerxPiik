@@ -2239,7 +2239,7 @@ function buildStep(command: string, args: string[], failure: string): void {
   }
 }
 
-// buildServer compiles the Piik server this run starts. The Web assets are
+// buildServer compiles the FerxLet server this run starts. The Web assets are
 // embedded, so the Vite build precedes the Go build and the Browser reaches the
 // same bundle the binary serves.
 function buildServer(): string {
@@ -2255,7 +2255,7 @@ function buildServer(): string {
     buildStep("npm", ["run", "build:web"], "Web UI build failed");
   }
   buildStep(go, ["build", "-trimpath", "-o", output, "./cmd/piik-server"],
-    "Piik server build failed");
+    "FerxLet server build failed");
   return output;
 }
 

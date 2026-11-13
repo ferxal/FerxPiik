@@ -18,7 +18,7 @@ outside the cutover window. See [nft output options](https://netfilter.org/proje
 
 ## Release Boundary
 
-A routine Server release changes only the built Piik server binary and
+A routine Server release changes only the built FerxLet server binary and
 the Browser assets it embeds. It does not change infrastructure,
 service units, proxy/firewall rules, secrets, media listener configuration, or
 persistent room state.
@@ -195,7 +195,7 @@ sudo env PIIK_PUBLIC_ORIGIN=https://share.example.com \
 The wrapper:
 
 1. takes a deployment lock and validates the descriptor, revision, archive,
-   manifest, current Go process, Piik/nginx service state, and public origin;
+   manifest, current Go process, FerxLet/nginx service state, and public origin;
 2. rejects unexpected archive paths, links, file types, or duplicate inodes;
 3. extracts to a new release directory and verifies every file hash and size;
 4. validates production configuration by running the packaged binary's
@@ -224,7 +224,7 @@ schema validation fails closed before accepting signaling or media admission.
 
 ## Postflight
 
-Package publication, the website, and running Piik services are separate delivery
+Package publication, the website, and running FerxLet services are separate delivery
 targets. CI publishes packages and the website; it does not update the managed
 Demo or private service. Complete their authorized deployment before reporting
 the release as deployed, and verify each service against the release descriptor:
@@ -248,8 +248,8 @@ Verify only the surfaces relevant to the release:
 
 - local and public `/healthz` return `{"status":"ok"}`;
 - the public HTML references the new immutable main asset;
-- Piik and nginx have expected active/restart state;
-- Piik owns each configured STUN/SFU UDP listener and public reachability
+- FerxLet and nginx have expected active/restart state;
+- FerxLet owns each configured STUN/SFU UDP listener and public reachability
   matches the configuration;
 - the current symlink and served revision match the descriptor;
 - room creation, Host authentication, one direct Viewer, and configured SFU
@@ -263,7 +263,7 @@ to [verification status](./verification-status.md), not routine postflight.
 ## Recovery
 
 Before cutover, the wrapper keeps the exact prior release path. On failure after
-the switch begins, it stops Piik, restores that path atomically, restarts the
+the switch begins, it stops FerxLet, restores that path atomically, restarts the
 service, and waits for health. A failed recovery exits distinctly and requires
 operator intervention; it must not silently report the new release as active.
 

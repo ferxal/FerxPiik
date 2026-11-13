@@ -1,4 +1,4 @@
-// Package protocol is the Go owner of the Piik wire contract. Its shared
+// Package protocol is the Go owner of the FerxLet wire contract. Its shared
 // fixtures and scalar helpers are kept semantics-compatible with the Browser
 // implementation. The package performs no I/O and imports nothing from other
 // internal packages.
@@ -13,7 +13,7 @@ const (
 	MaxAudioBitrate = 510_000
 )
 
-// Limits and identifiers in the Piik wire contract.
+// Limits and identifiers in the FerxLet wire contract.
 const (
 	MaxViewersPerRoomLimit      = 20
 	MaxParticipantsPerRoomLimit = MaxViewersPerRoomLimit + 1

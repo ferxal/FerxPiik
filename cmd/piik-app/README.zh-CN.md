@@ -1,17 +1,17 @@
-# Piik App
+# FerxLet App
 
 [English](./README.md) · 简体中文 · [上手指南](../../docs/guide/getting-started.zh-CN.md)
 
-Piik App 通过系统浏览器中的 Piik 网页界面，提供本地房间与原生屏幕采集。
+FerxLet App 通过系统浏览器中的 FerxLet 网页界面，提供本地房间与原生屏幕采集。
 
 ## 运行程序包
 
-安卓 APK 安装与共用的浏览器操作流程见[上手指南](../../docs/guide/getting-started.zh-CN.md#用-piik-app-分享)。
+安卓 APK 安装与共用的浏览器操作流程见[上手指南](../../docs/guide/getting-started.zh-CN.md#用-ferxlet-app-分享)。
 下方程序包、终端与命令行说明适用于桌面 App。
 
 完整解压对应平台的程序包。Windows 和 Linux 保留 App 程序旁的 `runtime` 目录，
 分别运行 `piik-app.exe` 或 `./piik-app`。
-macOS 打开 `Piik App.app`，也可以将整个 `.app` 移到「应用程序」。
+macOS 打开 `FerxLet App.app`，也可以将整个 `.app` 移到「应用程序」。
 首次打开被拦截时，按 [Mac 打开说明](../../docs/guide/troubleshooting.zh-CN.md#macos-提示已损坏或无法验证开发者)处理。
 启动页会在系统浏览器中打开。Linux 原生采集所需的系统依赖见
 [Linux 采集指南](../../native/capture/linux/README.md)。
@@ -20,11 +20,11 @@ macOS 打开 `Piik App.app`，也可以将整个 `.app` 移到「应用程序」
 使用网页期间，请保持 App 运行。
 
 macOS 原生采集需要 macOS 13 或更新版本。目前主要测试 Windows App 与浏览器分享，
-欢迎 macOS/Linux 用户[反馈使用结果](https://github.com/TNTcraftHIM/Piik/issues)。
+欢迎 macOS/Linux 用户[反馈使用结果](https://github.com/ferxal/FerxPiik/issues)。
 
 ## 运行模式
 
-选择 **本地房间** 或 **公网邀请**，点击 **进入 Piik** 启动房间服务。
+选择 **本地房间** 或 **公网邀请**，点击 **进入 FerxLet** 启动房间服务。
 搭配已有站点使用采集时，保持启动页打开，[授权该站点](#已授权站点)即可。
 
 App 会记住上次确认的房间模式。首次使用默认选中 **公网邀请**，确认后才启动；
@@ -48,7 +48,7 @@ App 自动选择唯一的活动地址或私有 IPv4；有多个地址时，在�
 
 选择 **公网邀请**，在打开的浏览器中创建房间，再发送邀请链接。
 程序包中的 Cloudflare Tunnel 提供临时 `trycloudflare.com` HTTPS 地址，App 关闭后失效，
-下次启动会生成新地址。需要固定地址时，请使用配置好的 Piik 站点。
+下次启动会生成新地址。需要固定地址时，请使用配置好的 FerxLet 站点。
 
 本地房间和公网邀请的画面、声音通过 P2P 传输，不经过网页隧道；需要可用的 UDP 媒体路径，
 没有服务器媒体转发（SFU）或 TURN 中继。隧道或媒体连接失败时，查看
@@ -57,12 +57,12 @@ App 自动选择唯一的活动地址或私有 IPv4；有多个地址时，在�
 公网邀请使用 Cloudflare、小米和 Bilibili 的 STUN 服务发现可连接地址。
 被联系的服务商能看到你的公网 IP、端口和请求时间；这些请求不包含分享画面、声音、
 聊天或房间密码。公网邀请可在启动 App 前通过
-`PIIK_STUN_URLS` 替换 STUN 服务，示例见 [App 配置](../../docs/standards/configuration.md#piik-app-configuration)。
+`PIIK_STUN_URLS` 替换 STUN 服务，示例见 [App 配置](../../docs/standards/configuration.md#ferxlet-app-configuration)。
 搭配已授权站点时使用站点的 `STUN_URLS`；App 本地房间不配置公共 STUN。
 
 ### 已授权站点
 
-保持 App 运行，点击 Piik 站点顶部的 **App**，在本机确认页核对网址并允许使用。
+保持 App 运行，点击 FerxLet 站点顶部的 **App**，在本机确认页核对网址并允许使用。
 详细操作见[连接步骤](../../docs/guide/getting-started.zh-CN.md#通过已有站点使用-app)。
 
 启动页会列出已授权站点：
@@ -96,27 +96,27 @@ App 配置保存可选的本地站点口令。留空表示本地站点开放进�
 观众邀请独立授予对应房间的访问权，详见[房间与访问](../../docs/standards/rooms-access.md)。
 
 保存的偏好、配置路径与环境变量见
-[App 配置](../../docs/standards/configuration.md#piik-app-configuration)。
+[App 配置](../../docs/standards/configuration.md#ferxlet-app-configuration)。
 开发或自动化运行时，可直接指定模式，跳过启动页：
 
 | 参数 | 模式 |
 | --- | --- |
 | `--local` | 本地房间；有多个可能的局域网地址时，添加 `--lan-address <address>` |
 | `--link` | 临时公网邀请 |
-| `--site <origin>` | 保存并打开 Piik 站点 |
+| `--site <origin>` | 保存并打开 FerxLet 站点 |
 
 ## 升级
 
 App 与站点需要使用同一大版本，**2.x 与 1.x 不能混用**。
 不同 2.x 版本保留已有的分享和观看功能，新功能需要相关 App 与站点支持。
 
-1. 查看 [GitHub](https://github.com/TNTcraftHIM/Piik/releases/latest) 或
-   [AtomGit](https://atomgit.com/TNTcraftHIM/Piik/releases) 上的版本说明。
+1. 查看 [GitHub](https://github.com/ferxal/FerxPiik/releases/latest) 或
+   [AtomGit](https://atomgit.com/ferxal/FerxPiik/releases) 上的版本说明。
 2. 使用本地房间或公网邀请时，停止分享并关闭 App，完整解压新版程序包，重新启动后发送新邀请。
 3. 使用已有站点时，由管理员先[更新 Server](../../docs/operations/service-management.zh-CN.md)，
    再更新连接的 App，并刷新所有分享与观看页面。
 
-启动页的更新按钮可下载程序包；[AtomGit 镜像](https://atomgit.com/TNTcraftHIM/Piik/releases)提供当前备用下载。
+启动页的更新按钮可下载程序包；[AtomGit 镜像](https://atomgit.com/ferxal/FerxPiik/releases)提供当前备用下载。
 重启 App 或 Server 会中断当前分享。
 
 ## 终端与关闭

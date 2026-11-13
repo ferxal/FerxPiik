@@ -21,12 +21,12 @@ describe("release automation", () => {
     });
     expect(splitReleaseHeadline(opening.replaceAll("\n\n", "\r\n\r\n\r\n")).headline)
       .toEqual({ "zh-CN": { title: "远程同乐，轮到你啦！", description: "" }, en: { title: "Play together. Your turn!", description: "" } });
-    const explained = "**Play together. Your turn!**\n\nPiik now supports remote control and remote co-play.\n\n" +
-      "**远程同乐，轮到你啦！**\n\nPiik 现已支持远程控制与远程同乐。";
+    const explained = "**Play together. Your turn!**\n\nFerxLet now supports remote control and remote co-play.\n\n" +
+      "**远程同乐，轮到你啦！**\n\nFerxLet 现已支持远程控制与远程同乐。";
     expect(splitReleaseHeadline(`${explained}\n\n### English\n\nSharing fixes.`)).toEqual({
       headline: {
-        en: { title: "Play together. Your turn!", description: "Piik now supports remote control and remote co-play." },
-        "zh-CN": { title: "远程同乐，轮到你啦！", description: "Piik 现已支持远程控制与远程同乐。" },
+        en: { title: "Play together. Your turn!", description: "FerxLet now supports remote control and remote co-play." },
+        "zh-CN": { title: "远程同乐，轮到你啦！", description: "FerxLet 现已支持远程控制与远程同乐。" },
       },
       notes: "### English\n\nSharing fixes.",
     });
@@ -42,7 +42,7 @@ describe("release automation", () => {
     const commit = () => { git("add", "."); git("commit", "-m", "checkpoint without release notes"); return git("rev-parse", "HEAD"); };
     try {
       git("init", "--quiet", "--initial-branch=main");
-      git("config", "user.name", "Piik fixture");
+      git("config", "user.name", "FerxLet fixture");
       git("config", "user.email", "fixture@example.invalid");
       git("config", "commit.gpgSign", "false");
       mkdirSync(join(root, "public"));
@@ -92,30 +92,30 @@ describe("release automation", () => {
     };
     try {
       git("init", "--quiet", "--initial-branch=main");
-      git("config", "user.name", "Piik fixture");
+      git("config", "user.name", "FerxLet fixture");
       git("config", "user.email", "fixture@example.invalid");
       git("config", "commit.gpgSign", "false");
       commit("chore: private history without release copy");
       const launch = commit("feat: launch\n\n## Problem\nInternal discussion\n\n## Release notes\n" +
         "<!-- Editor guidance -->\n### 开始分享\n\n- 一起玩，一起看。\n\n## Verification\nInternal log");
-      const first = releaseNotes(root, "v1.0.0", launch, "fixture/Piik");
+      const first = releaseNotes(root, "v1.0.0", launch, "fixture/FerxLet");
       expect(first).toContain("### 开始分享\n\n- 一起玩，一起看。");
       expect(first).toContain(`/tree/${launch}`);
       expect(first).not.toMatch(/private history|Internal|Editor guidance/);
       git("tag", "-a", "v1.0.0", "-m", "Launch");
-      expect(releaseNotes(root, "v1.0.0", launch, "fixture/Piik")).toBe(first);
+      expect(releaseNotes(root, "v1.0.0", launch, "fixture/FerxLet")).toBe(first);
       const website = commit("feat(site)!: redesign the homepage", "site/index.html");
-      expect(() => releaseNotes(root, "v1.0.1", website, "fixture/Piik")).toThrow("No release changes");
-      expect(releaseNotes(root, "v1.0.1", website, "fixture/Piik", { allowEmpty: true })).toBe("");
+      expect(() => releaseNotes(root, "v1.0.1", website, "fixture/FerxLet")).toThrow("No release changes");
+      expect(releaseNotes(root, "v1.0.1", website, "fixture/FerxLet", { allowEmpty: true })).toBe("");
       const candidate = JSON.parse(execFileSync(process.execPath, [planner, "build"], {
         cwd: root, encoding: "utf8", env: { ...process.env, PIIK_BUILD_VERSION: "v1.0.1" },
       }));
       expect(candidate).toMatchObject({ version: "v1.0.1", publish: false });
       commit("fix: repair playback\n\n## Release notes\n**Earlier theme**\n\n**旧主题**\n\n- Playback resumes after reconnecting.");
-      const opening = "**Play together. Your turn!**\n\nPiik now supports remote control and remote co-play.\n\n" +
-        "**远程同乐，轮到你啦！**\n\nPiik 现已支持远程控制与远程同乐。";
+      const opening = "**Play together. Your turn!**\n\nFerxLet now supports remote control and remote co-play.\n\n" +
+        "**远程同乐，轮到你啦！**\n\nFerxLet 现已支持远程控制与远程同乐。";
       const next = commit(`feat: add a sharing option\n\n## Release notes\n${opening}\n\n- Choose a window to share.`);
-      const notes = releaseNotes(root, "v1.1.0", next, "fixture/Piik");
+      const notes = releaseNotes(root, "v1.1.0", next, "fixture/FerxLet");
       expect(notes.startsWith(opening)).toBe(true);
       expect(notes).not.toMatch(/旧主题|Earlier theme/);
       expect(notes).toContain("- Playback resumes after reconnecting.\n\n- Choose a window to share.");
@@ -123,23 +123,23 @@ describe("release automation", () => {
       expect(notes).not.toContain("开始分享");
       expect(notes).not.toContain("redesign");
       const omitted = commit("fix: reconnect\n\n## Release notes\n- Reconnect reliably.");
-      const plain = releaseNotes(root, "v1.1.0", omitted, "fixture/Piik");
+      const plain = releaseNotes(root, "v1.1.0", omitted, "fixture/FerxLet");
       expect(splitReleaseHeadline(plain).headline).toBeNull();
       expect(plain).toContain("- Playback resumes after reconnecting.\n\n- Choose a window to share.\n\n- Reconnect reliably.");
       git("tag", "v1.1.0", next);
-      expect(releaseNotes(root, "v1.1.0", next, "fixture/Piik")).toBe(notes);
+      expect(releaseNotes(root, "v1.1.0", next, "fixture/FerxLet")).toBe(notes);
       // A checkout may have advanced; generation still uses the requested SHA.
-      expect(releaseNotes(root, "v1.0.0", launch, "fixture/Piik")).toBe(first);
+      expect(releaseNotes(root, "v1.0.0", launch, "fixture/FerxLet")).toBe(first);
       for (const section of ["", "## Release notes", "## Release notes\n<!-- Fill in -->\n### Changes",
         "## Release notes\n- One\n## Release notes\n- Two", `## Release notes\n${opening}`]) {
         git("checkout", "--quiet", "--detach", next);
         const invalid = commit(`chore: maintenance\n\n${section}`);
-        expect(() => releaseNotes(root, "v1.1.1", invalid, "fixture/Piik")).toThrow("one nonempty");
+        expect(() => releaseNotes(root, "v1.1.1", invalid, "fixture/FerxLet")).toThrow("one nonempty");
       }
       for (const damaged of ["????????????", "Updated \uFFFD capture"]) {
         git("checkout", "--quiet", "--detach", next);
         const invalid = commit(`fix: capture\n\n## Release notes\n${damaged}`);
-        expect(() => releaseNotes(root, "v1.1.1", invalid, "fixture/Piik")).toThrow("damaged Release notes");
+        expect(() => releaseNotes(root, "v1.1.1", invalid, "fixture/FerxLet")).toThrow("damaged Release notes");
       }
     } finally { rmSync(root, { recursive: true, force: true }); }
   }, 15_000); // Real Git subprocesses share the runner with the rest of the suite.
@@ -156,7 +156,7 @@ describe("release automation", () => {
     };
     try {
       git("init", "--quiet", "--initial-branch=main");
-      git("config", "user.name", "Piik fixture");
+      git("config", "user.name", "FerxLet fixture");
       git("config", "user.email", "fixture@example.invalid");
       git("config", "commit.gpgSign", "false");
       commit("chore: initial");
@@ -209,7 +209,7 @@ describe("release automation", () => {
     const plan = () => JSON.parse(execFileSync(process.execPath, [planner, "plan"], { cwd: root, encoding: "utf8" }));
     try {
       git("init", "--quiet", "--initial-branch=main");
-      git("config", "user.name", "Piik fixture");
+      git("config", "user.name", "FerxLet fixture");
       git("config", "user.email", "fixture@example.invalid");
       git("config", "commit.gpgSign", "false");
       mkdirSync(join(root, "public"));

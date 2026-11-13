@@ -1,5 +1,5 @@
-// Command piik-app is the self-contained Piik App: it opens a
-// configured Piik Site, or runs the Local room authority in-process
+// Command piik-app is the self-contained FerxLet App: it opens a
+// configured FerxLet Site, or runs the Local room authority in-process
 // (--local / --link) together with the loopback capability service and the
 // native media edge. Flags select the mode; app owns every mode's
 // lifecycle.
@@ -26,7 +26,7 @@ func main() {
 func run(args []string) int {
 	var options app.Options
 	flags := flag.NewFlagSet("piik-app", flag.ContinueOnError)
-	flags.Func("site", "save and open a Piik Site origin", func(value string) error {
+	flags.Func("site", "save and open a FerxLet Site origin", func(value string) error {
 		options.Site = value
 		options.SiteSet = true
 		return nil
@@ -39,7 +39,7 @@ func run(args []string) int {
 	flags.StringVar(&options.TunnelProcess, "tunnel-process", "", "path to the packaged public tunnel process")
 	flags.StringVar(&options.ConfigPath, "config", "", "path to the App configuration file")
 	flags.StringVar(&options.LANAddress, "lan-address", "", "LAN IPv4 address used in Local invitations")
-	flags.IntVar(&options.Port, "port", app.DefaultLocalPort, "Local Piik server port")
+	flags.IntVar(&options.Port, "port", app.DefaultLocalPort, "Local FerxLet server port")
 	if err := flags.Parse(args); err != nil {
 		if err == flag.ErrHelp {
 			return 0

@@ -12,10 +12,10 @@ describe("App ZIP distribution", () => {
     try {
       const source = join(root, "assembled app");
       const extracted = join(root, "extracted app");
-      const archive = join(root, "Piik App.zip");
+      const archive = join(root, "FerxLet App.zip");
       const files = {
         "piik-app": "#!/bin/sh\nexit 0\n",
-        "Piik App.app/Contents/MacOS/piik-app": "#!/bin/sh\nexit 0\n",
+        "FerxLet App.app/Contents/MacOS/piik-app": "#!/bin/sh\nexit 0\n",
         "runtime/.native/画面.txt": "Native capture\n",
         ".release-metadata": "Hidden metadata\n",
       };
@@ -24,7 +24,7 @@ describe("App ZIP distribution", () => {
         mkdirSync(dirname(path), { recursive: true });
         writeFileSync(path, content);
       }
-      const executables = ["piik-app", "Piik App.app/Contents/MacOS/piik-app"];
+      const executables = ["piik-app", "FerxLet App.app/Contents/MacOS/piik-app"];
       for (const name of executables) chmodSync(join(source, name), 0o755);
       createZip(source, archive);
       expect(readFileSync(archive).subarray(0, 4)).toEqual(Buffer.from([0x50, 0x4b, 0x03, 0x04]));

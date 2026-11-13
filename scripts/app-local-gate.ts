@@ -203,10 +203,10 @@ async function main(): Promise<void> {
         stream.getTracks().forEach(track=>track.stop());
         const key=await crypto.subtle.generateKey({name:'AES-GCM',length:128},false,['encrypt','decrypt']);
         const iv=crypto.getRandomValues(new Uint8Array(12));
-        const text=new TextEncoder().encode('Piik LAN input');
+        const text=new TextEncoder().encode('FerxLet LAN input');
         const ciphertext=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,text);
         const plaintext=await crypto.subtle.decrypt({name:'AES-GCM',iv},key,ciphertext);
-        return {secure:isSecureContext,microphone,encryption:new TextDecoder().decode(plaintext)==='Piik LAN input'};
+        return {secure:isSecureContext,microphone,encryption:new TextDecoder().decode(plaintext)==='FerxLet LAN input'};
       })()`, Date.now() + 5_000);
     report.lanSecureContext = capabilities.secure;
     report.lanMicrophone = capabilities.microphone;

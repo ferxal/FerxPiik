@@ -12,7 +12,7 @@ const { servers } = readReleaseArtifacts(directory, version, revision);
 // Only the Linux Server packages have a container image; a Windows Server
 // package shares the `amd64` arch but is a ZIP with no image of its own.
 const linuxServers = servers.filter(server => server.goos === "linux");
-const repository = process.env.GITHUB_REPOSITORY || "TNTcraftHIM/Piik";
+const repository = process.env.GITHUB_REPOSITORY || "ferxal/FerxPiik";
 const destination = `ghcr.io/${repository.toLowerCase()}`;
 const run = (command, ...args) => execFileSync(command, args, {
   encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 300_000,

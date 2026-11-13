@@ -2320,7 +2320,7 @@ private struct PiikCapture {
                 try await capture(arguments)
             }
         } catch {
-            let message = "Piik capture unavailable: \(error)\n"
+            let message = "FerxLet capture unavailable: \(error)\n"
             FileHandle.standardError.write(message.data(using: .utf8) ?? Data())
             Darwin.exit(2)
         }

@@ -1,20 +1,20 @@
-# Piik documentation
+# FerxLet documentation
 
-English · [简体中文](./README.zh-CN.md) · [Website](https://piik.tv/?lang=en)
+English · [简体中文](./README.zh-CN.md) · [Website](https://piik.ferxa1.com/?lang=en)
 
 Choose a guide to start sharing, use room tools or solve a problem.
 
-## Start using Piik
+## Start using FerxLet
 
 <div class="guide-task-index">
 
 - **[Watch a friend](./getting-started.md#join-a-friends-room)**<br>
   Open an invitation in a computer or phone browser. No installation needed.
-- **[Share my screen](./getting-started.md#share-with-piik-app)**<br>
-  Download and run Piik App, choose a picture and send an invitation.
-- **[Use Piik without installing](./getting-started.md#use-piik-online)**<br>
+- **[Share my screen](./getting-started.md#share-with-ferxlet-app)**<br>
+  Download and run FerxLet App, choose a picture and send an invitation.
+- **[Use FerxLet without installing](./getting-started.md#use-ferxlet-online)**<br>
   Share a screen or camera from the online site.
-- **[Use my group's Piik site](./getting-started.md#share-from-an-existing-site)**<br>
+- **[Use my group's FerxLet site](./getting-started.md#share-from-an-existing-site)**<br>
   Share in your browser, or connect App for more features.
 
 </div>
@@ -31,22 +31,22 @@ Choose a guide to start sharing, use room tools or solve a problem.
 - **Cannot join, share or hear a friend:** [find the checks for your problem](./troubleshooting.md#common-problems).
 - **The page opens, but picture or voice still will not connect:** after the basic checks, use [network checks](./network.md) to compare browsers, networks or a virtual LAN.
 
-Still stuck? [Report a problem](https://github.com/TNTcraftHIM/Piik/issues/new/choose)
+Still stuck? [Report a problem](https://github.com/ferxal/FerxPiik/issues/new/choose)
 with your version, system, browser and reproduction steps. Follow the
 [reporting steps](./troubleshooting.md#reporting-a-problem) to collect diagnostics.
 
 ## Run a site for your group
 
-<p><a href="../operations/self-hosting.md#docker-compose"><img src="https://img.shields.io/badge/Deploy_with-Docker_Compose-2764c4?style=for-the-badge&amp;logo=docker&amp;logoColor=white" alt="Deploy Piik Server with Docker Compose"></a></p>
+<p><a href="../operations/self-hosting.md#docker-compose"><img src="https://img.shields.io/badge/Deploy_with-Docker_Compose-2764c4?style=for-the-badge&amp;logo=docker&amp;logoColor=white" alt="Deploy FerxLet Server with Docker Compose"></a></p>
 
-For a permanent group site, deploy Piik Server on a reachable address with HTTPS
+For a permanent group site, deploy FerxLet Server on a reachable address with HTTPS
 and the required network ports.
 
-- [Deploy Piik Server](../operations/self-hosting.md) with Docker Compose or the server package.
+- [Deploy FerxLet Server](../operations/self-hosting.md) with Docker Compose or the server package.
 - [Keep it running and update](../operations/service-management.md).
 - [Look up configuration settings](../standards/configuration.md).
 
-## Help improve Piik
+## Help improve FerxLet
 
-[Translate Piik](./translating.md), [contribute](../../CONTRIBUTING.md), or explore the
+[Translate FerxLet](./translating.md), [contribute](../../CONTRIBUTING.md), or explore the
 [developer and maintainer documentation](../README.md).

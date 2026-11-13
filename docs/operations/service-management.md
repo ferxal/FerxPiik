@@ -31,7 +31,7 @@ after adapting the domain and certificate paths.
 ## Container
 
 Use the [Docker Compose setup](./self-hosting.md#docker-compose) for installation.
-The image is `ghcr.io/tntcrafthim/piik`, with `latest` and matching product version
+The image is `ghcr.io/ferxal/ferxpiik`, with `latest` and matching product version
 tags (`vMAJOR.MINOR.PATCH`). Docker selects **linux/amd64** or **linux/arm64**
 to match the host. Set `PIIK_IMAGE` in `.env`
 to pin a version or image digest. Updates are explicit; pulling an image does not
@@ -56,7 +56,7 @@ loopback, publishes the standard UDP ports and enables automatic restart.
 Publishing a port does not enable its service; `.env` controls optional listeners.
 Edit both the application setting and port mapping if changing a listener port.
 Run a host proxy, or adapt the proxy's container networking deliberately: its
-own `127.0.0.1` does not reach Piik in another container.
+own `127.0.0.1` does not reach FerxLet in another container.
 
 The image's `/home/nonroot` is owned by UID/GID `65532:65532` with mode `0700`.
 A new named volume inherits that directory; an existing volume or bind mount
@@ -80,7 +80,7 @@ docker compose up -d
 docker compose logs --tail=50 piik
 ```
 
-Use a new backup directory each time. Stop Piik before copying SQLite so its
+Use a new backup directory each time. Stop FerxLet before copying SQLite so its
 database and journal are consistent. Preserve `.env` separately and protect both
 backups as room credentials. Keep the same Compose project/directory so the named
 volume is reused; `docker compose down --volumes` deletes that data. To roll back,
@@ -91,15 +91,15 @@ The bare-metal `release-server.sh` wrapper does not manage containers.
 ## Operational Verification
 
 - `/healthz` returns `{"status":"ok"}` locally and through the public origin.
-- Piik and the HTTPS proxy are active with expected restart counts and bounded
-  logs/resources; Piik owns the configured STUN/SFU UDP listeners.
+- FerxLet and the HTTPS proxy are active with expected restart counts and bounded
+  logs/resources; FerxLet owns the configured STUN/SFU UDP listeners.
 - The official Trickle ICE sample obtains an ordinary UDP `srflx` candidate from
   the configured STUN service and no relay candidate.
 - A direct room presents media on two networks when Peer ICE succeeds.
 - When SFU is enabled, a constrained route creates one managed Host publication
   and only admitted subscriptions over embedded SFU UDP; Peer descendants remain ordinary P2P.
 - Blocking all UDP reaches a clear bounded failure.
-- Restarting Piik in stable mode retains room authority while Browser
+- Restarting FerxLet in stable mode retains room authority while Browser
   sessions and media reconnect from fresh process state.
 
 Representative network, mobile, audio, 20-Viewer, and long-running evidence is

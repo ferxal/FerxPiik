@@ -1,12 +1,12 @@
-<p align="center"><img src="./docs/assets/brand-mark.svg" width="64" height="64" alt="Piik mascot"></p>
-<h1 align="center">Piik</h1>
+<p align="center"><img src="./docs/assets/brand-mark.svg" width="64" height="64" alt="FerxLet mascot"></p>
+<h1 align="center">FerxLet</h1>
 <p align="center"><strong>Share the good stuff.</strong><br>Private screen sharing for you and up to 20 friends.</p>
 <p align="center">
-  <a href="https://piik.tv">Website</a> ·
-  <a href="https://github.com/TNTcraftHIM/Piik/releases">Download</a> ·
-  <a href="https://atomgit.com/TNTcraftHIM/Piik/releases">AtomGit mirror</a> ·
-  <a href="https://demo.piik.tv">Use online</a> ·
-  <a href="https://piik.tv/docs/?lang=en">Documentation</a>
+  <a href="https://piik.ferxa1.com">Website</a> ·
+  <a href="https://github.com/ferxal/FerxPiik/releases">Download</a> ·
+  <a href="https://atomgit.com/ferxal/FerxPiik/releases">AtomGit mirror</a> ·
+  <a href="https://demo.piik.ferxa1.com">Use online</a> ·
+  <a href="https://piik.ferxa1.com/docs/?lang=en">Documentation</a>
 </p>
 <p align="center">
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-36564f?style=flat-square" alt="License: MIT"></a>
@@ -15,9 +15,9 @@
 </p>
 <p align="center">English · <a href="./README.zh-CN.md">简体中文</a></p>
 
-Piik is a free, open-source screen sharing tool for private live streams with
+FerxLet is a free, open-source screen sharing tool for private live streams with
 friends: games, movie nights, drawings and photos. Choose what to share and send
-an invitation. Your friends watch in their browsers. You can also self-host Piik
+an invitation. Your friends watch in their browsers. You can also self-host FerxLet
 on your own server.
 
 <details open>
@@ -32,7 +32,7 @@ on your own server.
 ## Features
 
 - **Watch without installing.** Friends join by invitation in a desktop or mobile browser.
-- **Share from Piik App or an existing Piik site.** Choose a screen, window, browser tab or camera; available sources and audio depend on the platform.
+- **Share from FerxLet App or an existing FerxLet site.** Choose a screen, window, browser tab or camera; available sources and audio depend on the platform.
 - **Direct connections first.** Media travels between participants where possible (P2P). A self-hosted server can provide automatic media forwarding (SFU) as a fallback.
 - **Rooms you control.** Invitations, room codes and optional room passwords, for one host and up to 20 viewers.
 - **Talk and chat together.** Join room voice, send messages and reactions, or enable on-screen chat.
@@ -43,7 +43,7 @@ on your own server.
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="./docs/assets/room-en-dark.png">
-    <img src="./docs/assets/room-en-light.png" width="860" alt="Piik room: a shared game, playback controls, chat and friends on a sofa. The host wears a small gold crown.">
+    <img src="./docs/assets/room-en-light.png" width="860" alt="FerxLet room: a shared game, playback controls, chat and friends on a sofa. The host wears a small gold crown.">
   </picture><br>
   <sub>Interface preview · Sample room with a generated game scene</sub>
 </p>
@@ -53,13 +53,13 @@ on your own server.
 **To watch:** open the invitation your friend sends you. Select **Play** if the
 picture does not start automatically.
 
-**To share:** download **Piik App** to get started. To share without installing,
+**To share:** download **FerxLet App** to get started. To share without installing,
 you can also create a room in the online version.
 
 | Start here | What you need to do |
 | --- | --- |
-| [Use Piik online](https://demo.piik.tv) | Share from a desktop browser, or choose Camera on a phone with browser camera support. |
-| [Download Piik App](https://piik.tv/#download) | Extract the desktop package or install the mobile app, open Piik, choose **Public invite**, then **Open Piik**. |
+| [Use FerxLet online](https://demo.piik.ferxa1.com) | Share from a desktop browser, or choose Camera on a phone with browser camera support. |
+| [Download FerxLet App](https://piik.ferxa1.com/#download) | Extract the desktop package or install the mobile app, open FerxLet, choose **Public invite**, then **Open FerxLet**. |
 
 <p align="center"><img src="./docs/assets/quickstart.svg" width="640" alt="Choose a screen, send an invitation, watch together."></p>
 
@@ -69,7 +69,7 @@ you can also create a room in the online version.
 Open **Interact → Voice** to talk together, with or without picture sharing.
 The Host opens voice; everyone joins to listen and chooses when to turn on their microphone.
 
-Piik follows your system language: Chinese or English, with English as the fallback.
+FerxLet follows your system language: Chinese or English, with English as the fallback.
 Use **中 / EN / ✦** in the header to switch language or try the visual mode.
 The App can create a local room or temporary public invitation, and stays
 available to supply capture for an approved site. Keep it running while sharing.
@@ -86,11 +86,11 @@ networks, failed media connections or virtual LANs, see [network checks and conn
 
 ## Self-hosting
 
-Deploy Piik Server to run a site for your group.
+Deploy FerxLet Server to run a site for your group.
 
-<p><a href="./docs/operations/self-hosting.md#docker-compose"><img src="https://img.shields.io/badge/Deploy_with-Docker_Compose-2764c4?style=for-the-badge&amp;logo=docker&amp;logoColor=white" alt="Deploy Piik with Docker Compose"></a></p>
+<p><a href="./docs/operations/self-hosting.md#docker-compose"><img src="https://img.shields.io/badge/Deploy_with-Docker_Compose-2764c4?style=for-the-badge&amp;logo=docker&amp;logoColor=white" alt="Deploy FerxLet with Docker Compose"></a></p>
 
-Piik Server runs on Windows x64 and Linux x64/ARM64, with the web interface built in.
+FerxLet Server runs on Windows x64 and Linux x64/ARM64, with the web interface built in.
 Download the Server package for Linux x64 (`piik-<revision>-runtime.tar.gz`)
 or ARM64 (`piik-<revision>-linux-arm64-runtime.tar.gz`),
 extract it, and run:
@@ -112,24 +112,24 @@ For containers, use the [Docker Compose setup](./docs/operations/self-hosting.md
 
 Bug reports, translations, documentation improvements and pull requests are welcome.
 See [ways to contribute](./CONTRIBUTING.md#ways-to-help) or
-[help translate Piik](./docs/guide/translating.md). Use the
+[help translate FerxLet](./docs/guide/translating.md). Use the
 [repository layout](./docs/standards/engineering.md#repository-layout) to find your way around.
 
 ## License
 
-Piik-owned code is [MIT licensed](./LICENSE). Dependencies retain their own
+FerxLet-owned code is [MIT licensed](./LICENSE). Dependencies retain their own
 [licenses and notices](./licenses/README.md).
 
 ## Project activity
 
 <p align="center">
-  <a href="https://trendshift.io/repositories/236065"><img src="https://trendshift.io/api/badge/trendshift/repositories/236065/daily?language=TypeScript" width="250" alt="Piik on Trendshift"></a>
+  <a href="https://trendshift.io/repositories/236065"><img src="https://trendshift.io/api/badge/trendshift/repositories/236065/daily?language=TypeScript" width="250" alt="FerxLet on Trendshift"></a>
 </p>
 <p align="center">
-  <a href="https://www.star-history.com/#TNTcraftHIM/Piik&amp;Date">
+  <a href="https://www.star-history.com/#ferxal/FerxPiik&amp;Date">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=TNTcraftHIM/Piik&amp;type=Date&amp;theme=dark">
-      <img src="https://api.star-history.com/svg?repos=TNTcraftHIM/Piik&amp;type=Date" width="760" alt="Piik GitHub star history">
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ferxal/FerxPiik&amp;type=Date&amp;theme=dark">
+      <img src="https://api.star-history.com/svg?repos=ferxal/FerxPiik&amp;type=Date" width="760" alt="FerxLet GitHub star history">
     </picture>
   </a>
 </p>

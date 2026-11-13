@@ -86,7 +86,7 @@ func Run(ctx context.Context, options Options) (returnedErr error) {
 		var err error
 		recorder, err = openDiagnostics(options.LogDir)
 		if err != nil {
-			return errors.Join(failure.Diagnostics, fmt.Errorf("Piik App diagnostics are unavailable: %w", err))
+			return errors.Join(failure.Diagnostics, fmt.Errorf("FerxLet App diagnostics are unavailable: %w", err))
 		}
 		recorder.Context("build", map[string]any{"version": buildinfo.Version(), "revision": buildinfo.Revision})
 		previous, previousWriter, previousFlags := slog.Default(), log.Writer(), log.Flags()
@@ -124,12 +124,12 @@ func Run(ctx context.Context, options Options) (returnedErr error) {
 		var err error
 		configPath, err = appconfig.DefaultPath()
 		if err != nil {
-			return errors.Join(failure.Configuration, fmt.Errorf("Piik App configuration is unavailable: %w", err))
+			return errors.Join(failure.Configuration, fmt.Errorf("FerxLet App configuration is unavailable: %w", err))
 		}
 	}
 	config, err := appconfig.LoadOrCreate(configPath)
 	if err != nil {
-		return errors.Join(failure.Configuration, fmt.Errorf("Piik App configuration is unavailable: %w", err))
+		return errors.Join(failure.Configuration, fmt.Errorf("FerxLet App configuration is unavailable: %w", err))
 	}
 	config, err = applyMode(config, options)
 	if err != nil {
@@ -138,7 +138,7 @@ func Run(ctx context.Context, options Options) (returnedErr error) {
 	slog.Debug("piik-client", "event", "configuration", "siteConfigured", config.Site != "", "localAccessProtected", config.LocalAccessPassword != "")
 	if options.SiteSet {
 		if err = appconfig.Save(configPath, config); err != nil {
-			return errors.Join(failure.Configuration, fmt.Errorf("Piik App configuration is unavailable: %w", err))
+			return errors.Join(failure.Configuration, fmt.Errorf("FerxLet App configuration is unavailable: %w", err))
 		}
 	}
 	nativeMedia := discoverNativeMedia(ctx, options.CaptureProcess)
@@ -182,7 +182,7 @@ func Run(ctx context.Context, options Options) (returnedErr error) {
 		QualityPreference: qualityPreference,
 	})
 	if err != nil {
-		return errors.Join(failure.NativeControl, fmt.Errorf("Piik App native control could not start: %w", err))
+		return errors.Join(failure.NativeControl, fmt.Errorf("FerxLet App native control could not start: %w", err))
 	}
 	defer func() { returnedErr = errors.Join(returnedErr, control.Close()) }()
 	slog.Debug("piik-client", "event", "control-ready")
@@ -360,7 +360,7 @@ func runLauncher(
 			next.LocalAccessPassword = selection.LocalAccessPassword
 		})
 		if err != nil {
-			err = errors.Join(failure.Configuration, fmt.Errorf("Piik App configuration could not be saved: %w", err))
+			err = errors.Join(failure.Configuration, fmt.Errorf("FerxLet App configuration could not be saved: %w", err))
 			return err
 		}
 		if err = configureDiagnostics(&options, selectedConfig); err != nil {
@@ -425,7 +425,7 @@ func runLauncher(
 				return errors.Join(roomErr, err)
 			case err := <-launch.Done():
 				if err != nil {
-					return errors.Join(roomErr, failure.Launcher, fmt.Errorf("Piik App launcher stopped unexpectedly: %w", err))
+					return errors.Join(roomErr, failure.Launcher, fmt.Errorf("FerxLet App launcher stopped unexpectedly: %w", err))
 				}
 				return roomErr
 			}
@@ -447,7 +447,7 @@ func applyMode(config appconfig.Config, options Options) (appconfig.Config, erro
 	if options.SiteSet {
 		site, err := appconfig.NormalizeSite(options.Site)
 		if err != nil || site == "" {
-			return appconfig.Config{}, errors.New("Piik Site must be an HTTP or HTTPS origin")
+			return appconfig.Config{}, errors.New("FerxLet Site must be an HTTP or HTTPS origin")
 		}
 		sites, _ := appconfig.NormalizeSites(append([]string{site}, config.ApprovedSites()...))
 		config.SetApprovedSites(sites)
@@ -499,7 +499,7 @@ func openSite(site string, options Options, controlPort int) {
 	view := consoleView{mode: "site", state: "ready", entry: targetURL}
 	options.console.show(view)
 	if options.console.machine {
-		fmt.Printf("Piik Site: %s\n", site)
+		fmt.Printf("FerxLet Site: %s\n", site)
 	}
 	if !options.DisableBrowser {
 		options.console.openBrowser(targetURL)
@@ -663,7 +663,7 @@ func runLocal(ctx context.Context, options Options, config appconfig.Config,
 		return errors.Join(failure.LocalServer, err)
 	case err = <-control.Done():
 		if err != nil {
-			return errors.Join(failure.NativeControl, fmt.Errorf("Piik App native control stopped unexpectedly: %w", err))
+			return errors.Join(failure.NativeControl, fmt.Errorf("FerxLet App native control stopped unexpectedly: %w", err))
 		}
 		return nil
 	case <-tunnelDone:
@@ -774,7 +774,7 @@ func tunnelExecutable(configured string) string {
 func printEndpoint(endpoint loopback.Endpoint) error {
 	payload, err := json.Marshal(endpoint)
 	if err != nil {
-		return errors.New("Piik App endpoint is unavailable")
+		return errors.New("FerxLet App endpoint is unavailable")
 	}
 	fmt.Println(string(payload))
 	return nil

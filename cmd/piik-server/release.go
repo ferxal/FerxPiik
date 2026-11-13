@@ -18,8 +18,8 @@ import (
 )
 
 // The Browser notice and operator checker read the same published release.
-const defaultReleaseAPIURL = "https://api.github.com/repos/TNTcraftHIM/Piik/releases/latest"
-const mirrorReleaseAPIURL = "https://api.atomgit.com/api/v5/repos/TNTcraftHIM/Piik/releases"
+const defaultReleaseAPIURL = "https://api.github.com/repos/ferxal/FerxPiik/releases/latest"
+const mirrorReleaseAPIURL = "https://api.atomgit.com/api/v5/repos/ferxal/FerxPiik/releases"
 
 // deploy/check-release.sh forwards these codes without installing anything.
 const (
@@ -27,9 +27,9 @@ const (
 	exitUpdateAvailable   = 10
 	exitUpdateUnavailable = 20
 	releaseTimeout        = 5 * time.Second
-	releaseURLPrefix      = "https://github.com/TNTcraftHIM/Piik/releases/tag/"
+	releaseURLPrefix      = "https://github.com/ferxal/FerxPiik/releases/tag/"
 	releaseAPIHost        = "api.github.com"
-	mirrorReleaseURL      = "https://atomgit.com/TNTcraftHIM/Piik/releases"
+	mirrorReleaseURL      = "https://atomgit.com/ferxal/FerxPiik/releases"
 )
 
 var fullRevisionPattern = regexp.MustCompile(`^[0-9a-f]{40}$`)
@@ -114,11 +114,11 @@ func logReleaseNotice(logger *slog.Logger, result releaseResult) {
 	var message string
 	switch result.Status {
 	case statusUpdateAvailable:
-		message = "A newer Piik release is available"
+		message = "A newer FerxLet release is available"
 	case statusDifferentBuild:
-		message = "This Piik build differs from the official release"
+		message = "This FerxLet build differs from the official release"
 	case statusOfficialRelease:
-		message = "An official Piik release is available"
+		message = "An official FerxLet release is available"
 	default:
 		return
 	}
@@ -130,7 +130,7 @@ func logReleaseNotice(logger *slog.Logger, result releaseResult) {
 	if result.Status == statusUpdateAvailable && semver.IsValid(current) &&
 		semver.Major(*result.LatestVersion) != semver.Major(current) {
 		level = slog.LevelWarn
-		message = "A new major Piik release is available; review breaking changes in the release notes before upgrading"
+		message = "A new major FerxLet release is available; review breaking changes in the release notes before upgrading"
 	}
 	logger.Log(context.Background(), level, message, "event", "release-check", "status", result.Status,
 		"currentVersion", current, "latestVersion", *result.LatestVersion, "releaseUrl", *result.ReleaseURL)
@@ -182,7 +182,7 @@ func readReleaseResponse(ctx context.Context, endpoint *url.URL, token string, m
 		return nil, err
 	}
 	request.Header.Set("Accept", "application/json")
-	request.Header.Set("User-Agent", "Piik-release-check")
+	request.Header.Set("User-Agent", "FerxLet-release-check")
 	if !mirror {
 		request.Header.Set("Accept", "application/vnd.github+json")
 		request.Header.Set("X-GitHub-Api-Version", "2022-11-28")

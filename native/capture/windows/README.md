@@ -1,6 +1,6 @@
 # Windows Capture Process
 
-This isolated Windows process provides native capture for Piik App. It
+This isolated Windows process provides native capture for FerxLet App. It
 enumerates local displays and visible top-level windows, binds each window to
 its PID and process creation time, and has independent modes for:
 

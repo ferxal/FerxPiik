@@ -46,7 +46,7 @@ final class CapturedAudio {
                 if (!input.stopped) input.runtime.captureEnded(input.id);
               }
             },
-            "Piik captured audio");
+            "FerxLet captured audio");
     input.reader.start();
     input.runtime.audioReady(input.id);
     AppRuntimeService.prepared(input.runtime, input.id);

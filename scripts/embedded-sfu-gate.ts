@@ -171,7 +171,7 @@ async function main(): Promise<void> {
         instance.middlewares.use((request, response, next) => {
           if (request.url === "/embedded-sfu-source") {
             response.setHeader("Content-Type", "text/html; charset=utf-8");
-            response.end(`<!doctype html><title>Piik SFU captured source</title><style>body{margin:0}canvas{width:100vw;height:100vh}</style>
+            response.end(`<!doctype html><title>FerxLet SFU captured source</title><style>body{margin:0}canvas{width:100vw;height:100vh}</style>
               <canvas width="${captureSize.width}" height="${captureSize.height}"></canvas><script>
               const canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d');let n=0;
               function draw(){ctx.fillStyle='#167d8d';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#f2d748';
@@ -216,7 +216,7 @@ async function main(): Promise<void> {
     chrome = await launchChrome(chromePath, debugPort, profile, [
       "--headless=new", "--disable-gpu", "--no-first-run", "--no-default-browser-check",
       "--disable-extensions", "--disable-background-networking", "--autoplay-policy=no-user-gesture-required",
-      ...(displayArm ? ["--auto-select-tab-capture-source-by-title=Piik SFU captured source"] : [
+      ...(displayArm ? ["--auto-select-tab-capture-source-by-title=FerxLet SFU captured source"] : [
         "--disable-background-timer-throttling", "--disable-backgrounding-occluded-windows", "--disable-renderer-backgrounding"]),
       "--disable-features=WebRtcHideLocalIpsWithMdns",
     ]);

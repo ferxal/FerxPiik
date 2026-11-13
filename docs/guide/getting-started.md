@@ -1,14 +1,14 @@
-# Your first Piik room
+# Your first FerxLet room
 
-English · [简体中文](./getting-started.zh-CN.md) · [Back to Piik](../../README.md)
+English · [简体中文](./getting-started.zh-CN.md) · [Back to FerxLet](../../README.md)
 
-Piik lets one Host share with up to 20 invited Viewers. Choose your starting point:
+FerxLet lets one Host share with up to 20 invited Viewers. Choose your starting point:
 
 | You want to… | Start here |
 | --- | --- |
 | Watch a friend | [Open their invitation](#join-a-friends-room). No installation. |
-| Share with friends elsewhere | [Piik App → Public invite](#share-with-piik-app). Keep App running. |
-| Share without installing | [Piik online](#use-piik-online), in your browser. |
+| Share with friends elsewhere | [FerxLet App → Public invite](#share-with-ferxlet-app). Keep App running. |
+| Share without installing | [FerxLet online](#use-ferxlet-online), in your browser. |
 | Use your group's site | [Open that site](#share-from-an-existing-site); App capture is optional. |
 
 ![Three steps: pick a window, copy its room invitation, and join friends on the sofa.](../assets/quickstart.svg)
@@ -22,7 +22,7 @@ Piik lets one Host share with up to 20 invited Viewers. Choose your starting poi
 The playback bar controls only your own picture and sound.
 See [playback controls](./sharing.md#playback-controls) for fullscreen, display and sound options.
 
-Only have a four-digit code? Open the same Piik site and select **Join a room**.
+Only have a four-digit code? Open the same FerxLet site and select **Join a room**.
 Enter the site passphrase or room password if asked. If code entry is unavailable
 or an old link fails, ask the Host for their current invitation.
 
@@ -30,9 +30,9 @@ Each App's Local room or Public invite creates a separate site, so your friend's
 code does not work on your own App page. Open their full invitation instead;
 you do not need to create a room in your App to watch them.
 
-## Use Piik online
+## Use FerxLet online
 
-1. Open [demo.piik.tv](https://demo.piik.tv) in your browser.
+1. Open [demo.piik.ferxa1.com](https://demo.piik.ferxa1.com) in your browser.
 2. Select **Start sharing**, then **Browser** for a screen, window or tab, or
    **Camera** where your computer or phone browser supports it. Enable source
    audio if the picker offers it.
@@ -47,17 +47,17 @@ for sound support and the separate requirements for watching and cameras.
 The online version is provided by the project. Media travels only between participants (P2P);
 restrictive networks may load the page but block video.
 
-## Share with Piik App
+## Share with FerxLet App
 
-1. Download **Piik App** for your platform from
-   [GitHub Releases](https://github.com/TNTcraftHIM/Piik/releases) or the
-   [AtomGit mirror](https://atomgit.com/TNTcraftHIM/Piik/releases). On phones and tablets,
+1. Download **FerxLet App** for your platform from
+   [GitHub Releases](https://github.com/ferxal/FerxPiik/releases) or the
+   [AtomGit mirror](https://atomgit.com/ferxal/FerxPiik/releases). On phones and tablets,
    install the APK directly. On a computer,
    extract the whole archive and keep its directory structure intact.
-2. Open `piik-app.exe` on Windows, `Piik App.app` on macOS, or `./piik-app` on Linux.
-   On phones and tablets, open Piik after installation. The launcher opens in your system browser.
+2. Open `piik-app.exe` on Windows, `FerxLet App.app` on macOS, or `./piik-app` on Linux.
+   On phones and tablets, open FerxLet after installation. The launcher opens in your system browser.
 3. Choose **Public invite** for friends outside your local network, then select
-   **Open Piik**. Other modes are explained below.
+   **Open FerxLet**. Other modes are explained below.
 4. Choose **Start sharing**, then select **Browser**, **Camera**, **Apps / Windows**, or
    **Screens** as available. Pick the actual source and sound option.
 5. Copy and send the room invitation. Keep both the App and sharing tab open.
@@ -114,8 +114,8 @@ and generates a new public-invitation address.
 
 ### Use App with an existing site
 
-1. Keep Piik App running and open the Piik site in your browser. Enter its site
-   passphrase if asked; [Piik online](https://demo.piik.tv) needs no site passphrase.
+1. Keep FerxLet App running and open the FerxLet site in your browser. Enter its site
+   passphrase if asked; [FerxLet online](https://demo.piik.ferxa1.com) needs no site passphrase.
    No room mode needs to be selected in the App launcher.
 2. Click **App** at the top. Allow local-network access if the browser asks.
    When App is found, choose **Open App page**.
@@ -123,7 +123,7 @@ and generates a new public-invitation address.
 4. Return to the site, choose **Start sharing**, then **Apps / Windows** or **Screens**.
    Select a source and send the new room invitation to your friends.
 
-You can also choose **Connect Piik App** inside the **Start sharing** source
+You can also choose **Connect FerxLet App** inside the **Start sharing** source
 selector; its list updates as soon as the connection completes.
 If connection fails, the App button offers **Retry** and **Download App**.
 You can still share and watch in your browser.
@@ -138,10 +138,10 @@ To replace App or update a group's site, follow the [upgrade steps](../../cmd/pi
 
 ## Share from an existing site
 
-Use an HTTPS Piik site provided by your group or administrator.
+Use an HTTPS FerxLet site provided by your group or administrator.
 To run your own site, follow [self-hosting](../operations/self-hosting.md).
 
-1. Open your group's Piik site. Enter its site passphrase if asked.
+1. Open your group's FerxLet site. Enter its site passphrase if asked.
 2. Choose **Start sharing**, then **Browser** to select a screen, window or tab,
    or **Camera** where your computer or phone browser supports it.
    Enable source audio if the picker offers it.

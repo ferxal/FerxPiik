@@ -2,7 +2,7 @@ $ErrorActionPreference = "Stop"
 
 $repoRoot = (git rev-parse --show-toplevel).Trim()
 if ($LASTEXITCODE -ne 0) {
-    throw "This command must run inside the Piik Git repository."
+    throw "This command must run inside the FerxLet Git repository."
 }
 Set-Location $repoRoot
 

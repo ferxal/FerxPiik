@@ -507,7 +507,7 @@ func (server *Server) handleLaunch(response http.ResponseWriter, request *http.R
 	server.mu.Unlock()
 	if resultErr != nil {
 		writeJSON(response, http.StatusServiceUnavailable, map[string]string{
-			"error": "Piik App could not start", "detail": errorDetail(resultErr), "reason": string(failure.Of(resultErr)),
+			"error": "FerxLet App could not start", "detail": errorDetail(resultErr), "reason": string(failure.Of(resultErr)),
 		})
 		return
 	}

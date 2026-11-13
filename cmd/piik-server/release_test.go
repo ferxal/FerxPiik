@@ -18,7 +18,7 @@ const (
 	latestVersion    = "v1.10.0"
 	deployedRevision = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 	latestRevision   = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
-	latestReleaseURL = "https://github.com/TNTcraftHIM/Piik/releases/tag/" + latestVersion
+	latestReleaseURL = "https://github.com/ferxal/FerxPiik/releases/tag/" + latestVersion
 	latestRelease    = `{"tag_name":"` + latestVersion + `","html_url":"` + latestReleaseURL + `","target_commitish":"` + latestRevision + `"}`
 )
 
@@ -91,12 +91,12 @@ func TestParseReleaseMetadataAcceptsOnlyTheStrictReleaseIdentity(t *testing.T) {
 		{"prerelease version", tagged("v1.10.0-rc.1", releaseURLPrefix+"v1.10.0-rc.1"), "", "", ""},
 		{"build suffix", tagged("v1.10.0+build", releaseURLPrefix+"v1.10.0+build"), "", "", ""},
 		{"other host", tagged(latestVersion, "https://evil.example"), "", "", ""},
-		{"userinfo", tagged(latestVersion, "https://user@github.com/TNTcraftHIM/Piik/releases/tag/"+latestVersion), "", "", ""},
-		{"port", tagged(latestVersion, "https://github.com:8443/TNTcraftHIM/Piik/releases/tag/"+latestVersion), "", "", ""},
-		{"plaintext page", tagged(latestVersion, "http://github.com/TNTcraftHIM/Piik/releases/tag/"+latestVersion), "", "", ""},
+		{"userinfo", tagged(latestVersion, "https://user@github.com/ferxal/FerxPiik/releases/tag/"+latestVersion), "", "", ""},
+		{"port", tagged(latestVersion, "https://github.com:8443/ferxal/FerxPiik/releases/tag/"+latestVersion), "", "", ""},
+		{"plaintext page", tagged(latestVersion, "http://github.com/ferxal/FerxPiik/releases/tag/"+latestVersion), "", "", ""},
 		{"query", tagged(latestVersion, latestReleaseURL+"?asset=1"), "", "", ""},
 		{"fragment", tagged(latestVersion, latestReleaseURL+"#assets"), "", "", ""},
-		{"encoded path separator", tagged(latestVersion, "https://github.com/TNTcraftHIM%2FPiik/releases/tag/"+latestVersion), "", "", ""},
+		{"encoded path separator", tagged(latestVersion, "https://github.com/ferxal%2FFerxPiik/releases/tag/"+latestVersion), "", "", ""},
 		{"mismatched page tag", tagged(latestVersion, releaseURLPrefix+deployedVersion), "", "", ""},
 		{"draft", strings.TrimSuffix(latestRelease, "}") + `,"draft":true}`, "", "", ""},
 		{"prerelease", strings.TrimSuffix(latestRelease, "}") + `,"prerelease":true}`, "", "", ""},
@@ -139,7 +139,7 @@ func TestCheckReleaseReportsTheDeployedComparison(t *testing.T) {
 		t.Run(testCase.name, func(t *testing.T) {
 			server := httptest.NewServer(http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
 				if request.Header.Get("Accept") != "application/vnd.github+json" ||
-					request.Header.Get("X-GitHub-Api-Version") != "2022-11-28" || request.Header.Get("User-Agent") != "Piik-release-check" {
+					request.Header.Get("X-GitHub-Api-Version") != "2022-11-28" || request.Header.Get("User-Agent") != "FerxLet-release-check" {
 					t.Error("release request headers changed")
 				}
 				_, _ = writer.Write([]byte(testCase.body))

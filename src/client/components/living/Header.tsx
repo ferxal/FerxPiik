@@ -83,16 +83,16 @@ export function BrowserDiagnosticsButton({ quiet, size }: Pick<ComponentProps<ty
 
 const webVersion = import.meta.env.VITE_PIIK_VERSION ?? "development";
 const webRelease = /^v\d+\.\d+\.\d+$/.test(webVersion)
-  ? `https://github.com/TNTcraftHIM/Piik/releases/tag/${webVersion}` : null;
+  ? `https://github.com/ferxal/FerxPiik/releases/tag/${webVersion}` : null;
 
 function BrowserHelpContent({ active, diagnosticControl }: { active: boolean; diagnosticControl?: React.ReactNode }) {
   const { lang, vis, t } = useCopy();
   const guide = useProjectLink(`/docs/${lang === "zh" ? "zh/" : ""}troubleshooting.html`,
-    `https://github.com/TNTcraftHIM/Piik/blob/main/docs/guide/troubleshooting${lang === "zh" ? ".zh-CN" : ""}.md`, active);
+    `https://github.com/ferxal/FerxPiik/blob/main/docs/guide/troubleshooting${lang === "zh" ? ".zh-CN" : ""}.md`, active);
   return <div className={`lr-help-content${vis ? " is-visual" : ""}`}>
-    <header><strong>Piik Web</strong>
+    <header><strong>FerxLet Web</strong>
       {webRelease ? <a href={webRelease} target="_blank" rel="noopener noreferrer"
-        aria-label={`Piik Web ${webVersion}`}>{webVersion}</a> : <span>{webVersion}</span>}
+        aria-label={`FerxLet Web ${webVersion}`}>{webVersion}</a> : <span>{webVersion}</span>}
     </header>
     <nav aria-label={t("help.title")}>
       {active && <>

@@ -10,7 +10,7 @@ if (option && option !== "--dry-run") {
   throw new Error("Use mirror-release.mjs <artifacts> <version> <full-SHA> [--dry-run]");
 }
 const { files } = readReleaseArtifacts(directory, version, revision);
-const repository = "TNTcraftHIM/Piik";
+const repository = "ferxal/FerxPiik";
 const api = `https://api.atomgit.com/api/v5/repos/${repository}`;
 const marker = `<!-- piik-source: ${revision} -->`;
 const token = process.env.ATOMGIT_TOKEN?.trim();
@@ -117,7 +117,7 @@ if (option === "--dry-run") {
     const repo = await request("");
     if (!repo || repo.private || !repo.default_branch) throw new Error("A public initialized AtomGit mirror is required");
     release = await request("/releases", "POST", {
-      tag_name: version, name: source.name || `Piik ${version}`, body, release_status: "pre",
+      tag_name: version, name: source.name || `FerxLet ${version}`, body, release_status: "pre",
       target_commitish: revision,
     });
   }
@@ -156,7 +156,7 @@ if (option === "--dry-run") {
     // Uploads may take minutes; a newer GitHub release must not be displaced.
     requireLatestSource();
     const completed = await request(`/releases/${version}`, "PATCH", {
-      tag_name: version, name: source.name || `Piik ${version}`, body, release_status: "latest",
+      tag_name: version, name: source.name || `FerxLet ${version}`, body, release_status: "latest",
     });
     if (completed.prerelease !== false || completed.tag_name !== version) {
       throw new Error("AtomGit did not confirm the completed stable mirror");

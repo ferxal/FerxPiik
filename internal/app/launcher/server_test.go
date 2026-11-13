@@ -29,7 +29,7 @@ func appAssets() fs.FS {
 }
 
 func TestLauncherCompressesEntryAndAssetsWithoutChangingAPI(t *testing.T) {
-	body := []byte(strings.Repeat("Piik launcher asset ", 400))
+	body := []byte(strings.Repeat("FerxLet launcher asset ", 400))
 	assets := fstest.MapFS{
 		"index.html":    {Data: body},
 		"assets/app.js": {Data: body},
@@ -587,7 +587,7 @@ func TestLauncherReportsSafeBoundedFailureDetails(t *testing.T) {
 	if err := json.NewDecoder(response.Body).Decode(&failure); err != nil || response.StatusCode != http.StatusServiceUnavailable {
 		t.Fatalf("failure response = %d, %v", response.StatusCode, err)
 	}
-	if failure.Reason != string(appfailure.TunnelExited) || failure.Error != "Piik App could not start" || !strings.Contains(failure.Detail, "public tunnel failed") ||
+	if failure.Reason != string(appfailure.TunnelExited) || failure.Error != "FerxLet App could not start" || !strings.Contains(failure.Detail, "public tunnel failed") ||
 		strings.Contains(failure.Detail, "private-secret") || len([]rune(failure.Detail)) > 2051 {
 		t.Fatalf("unsafe or missing failure detail: %+v", failure)
 	}

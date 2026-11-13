@@ -93,13 +93,13 @@ STUN and optional SFU, with nginx for HTTPS. The
 [self-hosting runbook](./operations/self-hosting.md) owns listeners and network
 configuration.
 
-The separate US [public demo](https://demo.piik.tv) is deployed with open site
+The separate US [public demo](https://demo.piik.ferxa1.com) is deployed with open site
 entry, persistent room authority and P2P-only media. Cloudflare fronts HTTP/WSS
 and caches static bundles; STUN uses a separate DNS-only hostname. Caddy owns
 origin HTTPS, and the standard systemd service runs the published Server package.
 Demo expires rooms after one hour without authenticated participants; the private
 deployment retains the default of no expiry. The operator record owns exact
-identity and postflight evidence. `piik.tv` runs on GitHub Pages behind
+identity and postflight evidence. `piik.ferxa1.com` runs on GitHub Pages behind
 Cloudflare; website delivery includes a bilingual documentation center built
 from repository guides.
 

@@ -80,7 +80,7 @@ public final class CaptureService extends Service {
   @Override
   public void onCreate() {
     super.onCreate();
-    thread = new HandlerThread("Piik capture");
+    thread = new HandlerThread("FerxLet capture");
     thread.start();
     handler = new Handler(thread.getLooper());
     instance = this;
@@ -494,7 +494,7 @@ public final class CaptureService extends Service {
             int density = getResources().getDisplayMetrics().densityDpi;
             if (display == null)
               display = projection.createVirtualDisplay(
-                  "Piik", value.width, value.height, density,
+                  "FerxLet", value.width, value.height, density,
                   DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR, input, null, handler);
             else display.resize(value.width, value.height, density);
             if (display == null) throw new IllegalStateException("Could not create captured display");
@@ -764,7 +764,7 @@ public final class CaptureService extends Service {
                 try {
                   MainActivity activity = MainActivity.current;
                   if (service.previousMicrophone == null && (activity == null || !activity.visible))
-                    throw new IllegalStateException("Open Piik before starting commentary");
+                    throw new IllegalStateException("Open FerxLet before starting commentary");
                   service.updateMicrophoneForeground();
                   service.handler.post(() -> service.beginMicrophone(next, device));
                 } catch (RuntimeException error) {

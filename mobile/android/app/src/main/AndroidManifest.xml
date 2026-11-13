@@ -18,7 +18,7 @@
   </activity>
   <service android:name=".CaptureService" android:foregroundServiceType="mediaProjection|microphone" android:exported="false"/>
   <service android:name=".AppRuntimeService" android:foregroundServiceType="specialUse" android:exported="false">
-   <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE" android:value="User-started local room server and native screen-sharing companion for the user's browser; runs until the user stops Piik."/>
+   <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE" android:value="User-started local room server and native screen-sharing companion for the user's browser; runs until the user stops FerxLet."/>
   </service>
  </application>
 </manifest>

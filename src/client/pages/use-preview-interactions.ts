@@ -9,8 +9,8 @@ export function usePreviewInteractions(viewer: boolean) {
   const [session, setSession] = useState<RoomInteractionSession | null>(null);
   useEffect(() => {
     const sender = viewer
-      ? { peerId: "preview-friend", role: "viewer" as const, displayName: "Piik friend" }
-      : { peerId: "preview-host", role: "host" as const, displayName: "Piik" };
+      ? { peerId: "preview-friend", role: "viewer" as const, displayName: "FerxLet friend" }
+      : { peerId: "preview-host", role: "host" as const, displayName: "FerxLet" };
     const model = new RoomInteractionSession(message => {
       queueMicrotask(() => {
         if (message.type === "subscribe-room-interactions") model.receive({ type: "room-interactions-ready", serverTime: Date.now() });
@@ -25,8 +25,8 @@ export function usePreviewInteractions(viewer: boolean) {
   }, [viewer]);
   const receiveSample = (payload: InteractionPayload) => session?.receive({
     type: "room-interaction", id: createOpaqueId(), requestId: createOpaqueId(), occurredAt: Date.now(),
-    sender: viewer ? { peerId: "preview-host", role: "host", displayName: "Piik" }
-      : { peerId: "preview-friend", role: "viewer", displayName: "Piik friend" }, payload,
+    sender: viewer ? { peerId: "preview-host", role: "host", displayName: "FerxLet" }
+      : { peerId: "preview-friend", role: "viewer", displayName: "FerxLet friend" }, payload,
   });
   return { session, receiveSample };
 }

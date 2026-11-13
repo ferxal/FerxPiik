@@ -110,7 +110,7 @@ async function runCase(scenario: Scenario, seed: number, prediction: boolean, ou
     const mappings = await Promise.all(pair.map(endpoint => endpoint.call<{ address: string; port: number }>("peer-prepare")));
     const reachability = await Promise.all(pair.map((endpoint, index) => endpoint.call<{ replies: number }>("peer-probe", { peer: mappings[1 - index] })));
     result.peerCalibration = { mappings, reachability };
-    if (scenario.nat.every(mode => mode === "preserve") && reachability.some(probe => probe.replies < 5)) throw new Error("Baseline UDP rendezvous failed independently of Piik");
+    if (scenario.nat.every(mode => mode === "preserve") && reachability.some(probe => probe.replies < 5)) throw new Error("Baseline UDP rendezvous failed independently of FerxLet");
     if (scenario.ipv6) {
       const probes = await Promise.all(endpoints.map(endpoint => endpoint.call<ProbeResult>("probe", { ipv6: true })));
       if (probes.some(probe => probe.received !== probe.sent || !probe.mappings[0]?.address.startsWith("2001:db8:72:"))) throw new Error("IPv6 calibration failed");

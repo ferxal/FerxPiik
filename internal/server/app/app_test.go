@@ -1539,7 +1539,7 @@ func TestListenIsSingleShotAndRefusedAfterClose(t *testing.T) {
 	server := start(t, Options{Config: testConfig(t)})
 
 	if _, err := server.Listen(context.Background()); err == nil ||
-		err.Error() != "Piik server startup was already requested" {
+		err.Error() != "FerxLet server startup was already requested" {
 		t.Fatalf("second Listen error = %v", err)
 	}
 	if err := server.Close(context.Background()); err != nil {
@@ -1552,7 +1552,7 @@ func TestListenIsSingleShotAndRefusedAfterClose(t *testing.T) {
 		t.Fatalf("Close before Listen: %v", err)
 	}
 	if _, err := fresh.Listen(context.Background()); err == nil ||
-		err.Error() != "Piik server is closing" {
+		err.Error() != "FerxLet server is closing" {
 		t.Fatalf("Listen after Close error = %v", err)
 	}
 }
@@ -1723,7 +1723,7 @@ func TestReportsAListenerThatDiesWhileServing(t *testing.T) {
 		t.Fatalf("close the listener: %v", err)
 	}
 	waitFor(t, "the serve failure to be reported", func() bool {
-		return strings.Contains(logged.String(), "Piik HTTP server stopped unexpectedly")
+		return strings.Contains(logged.String(), "FerxLet HTTP server stopped unexpectedly")
 	})
 	if record := logged.String(); !strings.Contains(record, "errorType=*net.OpError") || strings.Contains(record, "error=") || strings.Contains(record, "127.0.0.1") {
 		t.Fatalf("listener failure must log only the error type: %q", record)

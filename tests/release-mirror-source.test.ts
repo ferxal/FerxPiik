@@ -4,7 +4,7 @@ import { resolveMirrorSource } from "../scripts/release-mirror-source.mjs";
 const { command } = vi.hoisted(() => ({ command: vi.fn() }));
 vi.mock("node:child_process", () => ({ execFileSync: command }));
 
-const repository = "TNTcraftHIM/Piik";
+const repository = "ferxal/FerxPiik";
 const revision = "a".repeat(40);
 const run = {
   id: 12345, repository: { full_name: repository }, head_repository: { full_name: repository },
@@ -48,8 +48,8 @@ describe("mirror source authority", () => {
     });
 
   it.each([
-    { id: 99 }, { repository: { full_name: "fork/Piik" } },
-    { head_repository: { full_name: "fork/Piik" } }, { event: "pull_request" },
+    { id: 99 }, { repository: { full_name: "fork/FerxLet" } },
+    { head_repository: { full_name: "fork/FerxLet" } }, { event: "pull_request" },
     { event: "workflow_dispatch" }, { head_branch: "preview" },
     { path: ".github/workflows/other.yml" }, { status: "in_progress" }, { head_sha: "short" },
   ])("rejects artifacts from a different authority or unfinished run: %j", (patch) => {

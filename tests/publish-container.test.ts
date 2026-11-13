@@ -5,8 +5,8 @@ vi.mock("node:child_process", () => ({ execFileSync: command }));
 vi.mock("../scripts/release-artifacts.mjs", () => ({ readReleaseArtifacts: artifacts }));
 
 const version = "v1.2.1", revision = "a".repeat(40), digest = "b".repeat(64);
-const repository = "TNTcraftHIM/Piik", image = `piik-candidate:${revision}`;
-const tag = `ghcr.io/tntcrafthim/piik:${version}`;
+const repository = "ferxal/FerxPiik", image = `piik-candidate:${revision}`;
+const tag = `ghcr.io/ferxal/ferxpiik:${version}`;
 const linuxServers = ["amd64", "arm64"].map(arch => ({
   name: `piik-aaaaaaa-${arch}-runtime.tar.gz`, sha256: arch === "amd64" ? digest : "d".repeat(64), arch,
   goos: "linux",
@@ -110,12 +110,12 @@ describe("container publication", () => {
     await publish();
     expect(artifacts).toHaveBeenCalledWith("artifacts", version, revision);
     expect(pushes()).toEqual([`${tag}-amd64`, `${tag}-arm64`]);
-    expect(indexes()).toEqual([[tag, `${tag}-amd64`, `${tag}-arm64`], ["ghcr.io/tntcrafthim/piik:latest", tag]]);
+    expect(indexes()).toEqual([[tag, `${tag}-amd64`, `${tag}-arm64`], ["ghcr.io/ferxal/ferxpiik:latest", tag]]);
   });
   it.each([false, true])("accepts BuildKit attestations in a new or retained index (existing=%s)", async (existing) => {
     await publish({ existing, attestation: true });
     expect(pushes()).toEqual(existing ? [] : [`${tag}-amd64`, `${tag}-arm64`]);
-    expect(indexes().at(-1)).toEqual(["ghcr.io/tntcrafthim/piik:latest", tag]);
+    expect(indexes().at(-1)).toEqual(["ghcr.io/ferxal/ferxpiik:latest", tag]);
   });
   it("rejects an unrecognized platform instead of treating it as an attestation", async () => {
     await expect(publish({ existing: true, unknownPlatform: true })).rejects.toThrow("Container platforms differ");

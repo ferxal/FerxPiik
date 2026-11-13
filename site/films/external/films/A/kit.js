@@ -354,7 +354,7 @@ export function callingCard(parent, { w = 560, hgt = 780, lines, sign, top: topL
   const bm = mascot({ stroke: C.ink, fill: C.cream, size: 320, sparkles: false });
   back.inner.appendChild(bm.el);
   Object.assign(bm.el.style, { position: 'absolute', left: (w - 24 - 320) / 2 + 'px', top: '180px' });
-  const bw = h('div', { class: 'abs nowrap', html: 'Piik<span class="identity-dot">.</span>' }, back.inner);
+  const bw = h('div', { class: 'abs nowrap', html: 'FerxLet<span class="identity-dot">.</span>' }, back.inner);
   Object.assign(bw.style, { left: '0', width: w - 24 + 'px', textAlign: 'center', top: '540px', font: WORDMARK(120), letterSpacing: '-6px', color: C.ink });
   return { el, front, back, r1, r2, sg };
 }

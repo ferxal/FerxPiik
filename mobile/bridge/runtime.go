@@ -60,7 +60,7 @@ func Start(platform Platform, lanAddress string, codecCapabilities string, dataD
 		return nil, errors.New("mobile media activation URL is invalid")
 	}
 	if webassets.FS() == nil {
-		return nil, errors.New("build the Piik Web assets before the mobile library")
+		return nil, errors.New("build the FerxLet Web assets before the mobile library")
 	}
 	if !filepath.IsAbs(temporaryDirectory) {
 		return nil, errors.New("mobile cache directory is unavailable")
@@ -384,7 +384,7 @@ func (r *Runtime) stop(reason failure.Reason) {
 func (r *Runtime) approveSite(value string) (string, error) {
 	site, err := appconfig.NormalizeSite(value)
 	if err != nil || !strings.HasPrefix(site, "https://") {
-		return "", errors.New("Enter an HTTPS Piik site origin")
+		return "", errors.New("Enter an HTTPS FerxLet site origin")
 	}
 	r.configMu.Lock()
 	sites := r.config.ApprovedSites()

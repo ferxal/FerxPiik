@@ -936,10 +936,10 @@ static gboolean bus_message(GstBus *bus, GstMessage *message, gpointer data) {
     gst_message_parse_error(message, &error, &debug);
     const char *cause = error == NULL ? "GStreamer pipeline failed" : error->message;
     if (error != NULL) {
-      fprintf(stderr, "Piik GStreamer error: source=%s domain=%s code=%d detail=%s\n",
+      fprintf(stderr, "FerxLet GStreamer error: source=%s domain=%s code=%d detail=%s\n",
               GST_MESSAGE_SRC(message) == NULL ? "unknown" : GST_OBJECT_NAME(GST_MESSAGE_SRC(message)),
               g_quark_to_string(error->domain), error->code, error->message);
-      if (debug != NULL) fprintf(stderr, "Piik GStreamer context: %s\n", debug);
+      if (debug != NULL) fprintf(stderr, "FerxLet GStreamer context: %s\n", debug);
     }
     VideoOutput *failed = NULL;
     for (guint index = 0; index < run->output_count; ++index) {
@@ -1156,7 +1156,7 @@ stopped:
   char *failure = g_strdup(run->failure);
   g_mutex_unlock(&run->lock);
   if (failure != NULL) {
-    fprintf(stderr, "Piik capture unavailable: %s\n", failure);
+    fprintf(stderr, "FerxLet capture unavailable: %s\n", failure);
     g_free(failure);
     return 2;
   }
@@ -1211,7 +1211,7 @@ static int capture_video(int count, char **values) {
   gboolean remote_input = g_strcmp0(g_getenv("PIIK_CAPTURE_REMOTE_INPUT"), "1") == 0;
   if (!encoded && !piik_portal_capture_open(
           g_getenv("PIIK_XDP_RESTORE_TOKEN"), remote_input, &portal, &error)) {
-    fprintf(stderr, "Piik capture unavailable: %s\n",
+    fprintf(stderr, "FerxLet capture unavailable: %s\n",
             error == NULL ? "screen selection failed" : error->message);
     g_clear_error(&error);
     g_ptr_array_unref(encoders);
@@ -1254,7 +1254,7 @@ static int capture_video(int count, char **values) {
   GstElement *pipeline = gst_parse_launch(pipeline_text->str, &error);
   g_string_free(pipeline_text, TRUE);
   if (pipeline == NULL || error != NULL) {
-    fprintf(stderr, "Piik capture unavailable: %s\n",
+    fprintf(stderr, "FerxLet capture unavailable: %s\n",
             error == NULL ? "video pipeline failed" : error->message);
     g_clear_error(&error);
     if (pipeline != NULL) gst_object_unref(pipeline);
@@ -1301,7 +1301,7 @@ static int capture_video(int count, char **values) {
     if (output->branch == NULL || output->branch == pipeline || output->gate == NULL) goto cleanup;
     if (!isolate_output(output)) goto cleanup;
     if (!prepare_encoder(output)) {
-      fprintf(stderr, "Piik capture unavailable: hardware encoder is incompatible\n");
+      fprintf(stderr, "FerxLet capture unavailable: hardware encoder is incompatible\n");
       goto cleanup;
     }
     if (output->failed) continue;
@@ -1439,7 +1439,7 @@ static int capture_audio(int count, char **values) {
 }
 
 int main(int argc, char **argv) {
-  // Piik owns this CLI. Opaque device IDs must never become GStreamer flags.
+  // FerxLet owns this CLI. Opaque device IDs must never become GStreamer flags.
   gst_init(NULL, NULL);
   if (argc == 2 && strcmp(argv[1], "--probe") == 0) return write_probe();
   if (argc == 2 && strcmp(argv[1], "--list") == 0) return write_sources();
@@ -1450,6 +1450,6 @@ int main(int argc, char **argv) {
   if (argc > 1 && (strcmp(argv[1], "--capture-audio") == 0 || strcmp(argv[1], "--capture-microphone") == 0)) {
     return capture_audio(argc, argv);
   }
-  fprintf(stderr, "Piik capture unavailable: unsupported command\n");
+  fprintf(stderr, "FerxLet capture unavailable: unsupported command\n");
   return 2;
 }

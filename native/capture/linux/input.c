@@ -45,7 +45,7 @@ gboolean piik_portal_input(PiikPortalCapture *capture, const char *command) {
     if (down || capture->buttons[code]) xdp_session_pointer_button(capture->session, buttons[code], down);
     capture->buttons[code] = down;
   } else if (sscanf(command, "W %d %c", &code, &extra) == 1 && code >= -1200 && code <= 1200) {
-    // Piik uses positive-up wheel ticks; Portal uses positive-down axis motion.
+    // FerxLet uses positive-up wheel ticks; Portal uses positive-down axis motion.
     xdp_session_pointer_axis(capture->session, TRUE, 0, -code);
   } else if (sscanf(command, "U %d %c", &code, &extra) == 1 &&
              code >= 0 && g_unichar_validate(code) && (code >= 32 || code == '\n' || code == '\t')) {

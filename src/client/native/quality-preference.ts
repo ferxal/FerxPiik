@@ -55,7 +55,7 @@ export class AppQualityPreference {
     const abort = () => controller.abort(this.signal.reason);
     if (this.signal.aborted) abort();
     else this.signal.addEventListener("abort", abort, { once: true });
-    const timer = setTimeout(() => controller.abort(new DOMException("Piik App preference request timed out", "TimeoutError")), 4_000);
+    const timer = setTimeout(() => controller.abort(new DOMException("FerxLet App preference request timed out", "TimeoutError")), 4_000);
     try {
       const response = await fetch(`http://127.0.0.1:${this.health.port}/quality-preference`, {
         method: settings ? "PUT" : "GET",
@@ -65,7 +65,7 @@ export class AppQualityPreference {
         signal: controller.signal,
         ...(isLoopbackPage() ? {} : { targetAddressSpace: "loopback" }),
       } as RequestInit);
-      if (!response.ok) throw new Error(`Piik App preference request failed (${response.status})`);
+      if (!response.ok) throw new Error(`FerxLet App preference request failed (${response.status})`);
       return settings ? undefined : await response.json();
     } finally {
       clearTimeout(timer);

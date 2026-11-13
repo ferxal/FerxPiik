@@ -38,9 +38,9 @@ sound support.
 
 ## SDR Conversion
 
-[#445](https://github.com/TNTcraftHIM/Piik/issues/445) reports washed-out Native
+[#445](https://github.com/ferxal/FerxPiik/issues/445) reports washed-out Native
 capture on an SDR Windows 10 system. The reporter
-[confirmed the updated release resolved the overexposure](https://github.com/TNTcraftHIM/Piik/issues/445#issuecomment-5958654848)
+[confirmed the updated release resolved the overexposure](https://github.com/ferxal/FerxPiik/issues/445#issuecomment-5958654848)
 on 2026-10-02. That field result does not establish the proposed explanation:
 Microsoft documents full-range RGB as the
 [video processor's default input range](https://learn.microsoft.com/en-us/windows/win32/api/d3d11/ns-d3d11-d3d11_video_processor_color_space).
@@ -104,7 +104,7 @@ coverage of all hardware encoders, HDR content or missing upstream color declara
 
 ## HDR To SDR
 
-[#420](https://github.com/TNTcraftHIM/Piik/issues/420) initially reported
+[#420](https://github.com/ferxal/FerxPiik/issues/420) initially reported
 overexposure with both App and Browser capture. On 2026-10-04 the reporter
 confirmed that native App capture was corrected in v1.7, while Browser capture
 remained overexposed. This is one machine's evidence, not all-device acceptance.
@@ -161,7 +161,7 @@ assigning a downstream bug.
 The reviewed [WebRTC WGC implementation](https://webrtc.googlesource.com/src/+/b5cf1fa607113788cf894d5b6895c72fba1d9254/modules/desktop_capture/win/wgc_capture_session.cc)
 requests an 8-bit BGRA frame pool. The Web capture API exposes no portable
 HDR-tone-mapping control; once highlights are clipped, lowering brightness in
-Piik cannot recover them. Keep this Browser/platform limitation explicit and
+FerxLet cannot recover them. Keep this Browser/platform limitation explicit and
 offer native capture or disabling system HDR in troubleshooting. Do not add a
 second Browser pixel pipeline without evidence that it receives intact HDR.
 
@@ -173,14 +173,14 @@ with HDR-to-SDR; no full-HDR or surround implementation is claimed.
 ## 2.0 Fidelity Reassessment
 
 Reviewed 2026-10-13 after the owner reopened HDR and multichannel consideration.
-Changing Piik's signaling contract does not by itself extend WebRTC codecs,
+Changing FerxLet's signaling contract does not by itself extend WebRTC codecs,
 capture formats or decoded outputs. Numeric quality limits and media formats
 have different compatibility boundaries.
 
 | Capability | Current evidence and additional work |
 | --- | --- |
 | Mono/stereo | Already carried by the existing Opus track, including microphone mixing, relay and SFU. Retain decoded-channel verification; a channel selector is unnecessary for these inputs. |
-| HDR source viewed as SDR | Windows native capture and thumbnails use the existing tone mapper. Physical HDR display acceptance remains open. Browser-owned capture may already have clipped highlights before Piik receives a frame. |
+| HDR source viewed as SDR | Windows native capture and thumbnails use the existing tone mapper. Physical HDR display acceptance remains open. Browser-owned capture may already have clipped highlights before FerxLet receives a frame. |
 | End-to-end HDR | Needs intact high-bit-depth capture, a supported HDR codec, color metadata and compatible decoding through every relay/output. Current native output uses 8-bit H.264/VP8. Mixed SDR viewers need a defined conversion owner; signaling an HDR flag cannot provide this. |
 | 5.1/7.1 surround | Needs channel-layout-preserving capture/mixing, multistream encoding, receiver admission and a stereo downmix boundary. Native PCM/Opus and the Browser microphone mix currently use two-channel output; adding a numeric channel count would silently overstate their capability. |
 

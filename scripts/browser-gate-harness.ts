@@ -29,7 +29,7 @@ interface AsyncCloseable {
 }
 
 // A gate's server is either an in-process page server it closes directly or a
-// spawned Piik server it stops like any other child.
+// spawned FerxLet server it stops like any other child.
 export type CleanupServer = AsyncCloseable | ChildProcessWithoutNullStreams;
 
 export interface CleanupResources {

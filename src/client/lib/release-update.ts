@@ -1,10 +1,10 @@
 import { compare, major, valid } from "semver";
 
 export const DEFAULT_RELEASE_API_URL =
-  "https://api.github.com/repos/TNTcraftHIM/Piik/releases/latest";
-export const MIRROR_RELEASE_API_URL = "https://api.atomgit.com/api/v5/repos/TNTcraftHIM/Piik/releases";
-const RELEASE_PAGE = "https://github.com/TNTcraftHIM/Piik/releases/tag/";
-const MIRROR_RELEASE_PAGE = "https://atomgit.com/TNTcraftHIM/Piik/releases";
+  "https://api.github.com/repos/ferxal/FerxPiik/releases/latest";
+export const MIRROR_RELEASE_API_URL = "https://api.atomgit.com/api/v5/repos/ferxal/FerxPiik/releases";
+const RELEASE_PAGE = "https://github.com/ferxal/FerxPiik/releases/tag/";
+const MIRROR_RELEASE_PAGE = "https://atomgit.com/ferxal/FerxPiik/releases";
 
 export interface ReleaseIdentity {
   version: string;

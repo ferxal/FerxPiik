@@ -26,7 +26,7 @@ concurrency:
 jobs:
   mirror:
     if: >-
-      github.repository == 'TNTcraftHIM/Piik' && github.ref == 'refs/heads/main' &&
+      github.repository == 'ferxal/FerxPiik' && github.ref == 'refs/heads/main' &&
       (github.event_name == 'workflow_dispatch' || github.event_name == 'schedule' ||
        (github.event.workflow_run.event == 'push' &&
         github.event.workflow_run.head_branch == 'main'))

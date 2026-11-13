@@ -477,7 +477,7 @@ async function main(): Promise<void> {
     const detached = await sample(viewer);
     await until(viewer, state => state.samples > detached.samples, "detached panel preserves voice");
     const { targetInfos } = await cdp.call<{ targetInfos: { targetId: string; title: string }[] }>("Target.getTargets", {}, undefined, Date.now() + 5000);
-    const popup = targetInfos.find(target => target.title === "Interactions · Piik");
+    const popup = targetInfos.find(target => target.title === "Interactions · FerxLet");
     if (!popup) throw new Error("Detached interaction window target missing");
     await ui(host, "--pin-tab", "tab", popup.targetId);
     await ui(host, "screenshot", join(OUTPUT, `${arm}-voice-detached.png`));

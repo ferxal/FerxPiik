@@ -38,12 +38,12 @@ void CheckInFlightCaptureEvent() {
 }
 
 void CheckOwnedApplicationWindow() {
-  HWND owner = CreateWindowExW(0, L"STATIC", L"Piik enumeration owner",
+  HWND owner = CreateWindowExW(0, L"STATIC", L"FerxLet enumeration owner",
       WS_OVERLAPPEDWINDOW, 0, 0, 320, 180, nullptr, nullptr, nullptr, nullptr);
   assert(owner != nullptr);
-  HWND application = CreateWindowExW(WS_EX_APPWINDOW, L"STATIC", L"Piik owned application",
+  HWND application = CreateWindowExW(WS_EX_APPWINDOW, L"STATIC", L"FerxLet owned application",
       WS_OVERLAPPEDWINDOW, 0, 0, 320, 180, owner, nullptr, nullptr, nullptr);
-  HWND dialog = CreateWindowExW(0, L"STATIC", L"Piik owned dialog",
+  HWND dialog = CreateWindowExW(0, L"STATIC", L"FerxLet owned dialog",
       WS_OVERLAPPEDWINDOW, 0, 0, 320, 180, owner, nullptr, nullptr, nullptr);
   assert(application != nullptr && dialog != nullptr);
   ShowWindow(application, SW_SHOWNOACTIVATE);
@@ -92,7 +92,7 @@ int wmain(int count, wchar_t** arguments) {
   // Enumeration and preview are separate operations. A once-listed window may
   // become hidden before WGC creates its item. Unsupported capture may return
   // an advisory error or a fallback preview, but cleanup must never crash.
-  HWND window = CreateWindowExW(0, L"STATIC", L"Piik hidden preview fixture",
+  HWND window = CreateWindowExW(0, L"STATIC", L"FerxLet hidden preview fixture",
                                WS_OVERLAPPEDWINDOW, 0, 0, 320, 180, nullptr,
                                nullptr, GetModuleHandleW(nullptr), nullptr);
   assert(window != nullptr);

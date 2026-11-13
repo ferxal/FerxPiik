@@ -21,7 +21,7 @@ export function ShareFailureHelp({ status, label, code, checks }: {
   const copyRequest = useRef<object | null>(null);
   const hint = (status.tooltip ?? status.comic)!;
   const guide = useProjectLink(`/docs/${lang === "zh" ? "zh/" : ""}troubleshooting.html`,
-    `https://github.com/TNTcraftHIM/Piik/blob/main/docs/guide/troubleshooting${lang === "zh" ? ".zh-CN" : ""}.md`, open);
+    `https://github.com/ferxal/FerxPiik/blob/main/docs/guide/troubleshooting${lang === "zh" ? ".zh-CN" : ""}.md`, open);
   return <>
     <StatusIndicator status={status} label={label} onActivate={() => {
       copyRequest.current = null;
@@ -56,7 +56,7 @@ export function ShareFailureHelp({ status, label, code, checks }: {
             // Deliberately excludes URLs, invitation credentials and raw exceptions.
             const version = import.meta.env.VITE_PIIK_VERSION ?? "development";
             const request = copyRequest.current = {};
-            void Promise.resolve().then(() => navigator.clipboard.writeText(`Piik Web ${version}\n${label}\n${code}`)).then(
+            void Promise.resolve().then(() => navigator.clipboard.writeText(`FerxLet Web ${version}\n${label}\n${code}`)).then(
               () => { if (copyRequest.current === request) setCopied("done"); },
               () => { if (copyRequest.current === request) setCopied("failed"); });
           }}><Glyph name={copied === "done" ? "check" : "copy"} size={16} />{!vis && t(copied === "done" ? "shareHelp.copied" : "shareHelp.copy")}</button>

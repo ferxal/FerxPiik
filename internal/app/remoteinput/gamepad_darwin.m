@@ -42,8 +42,8 @@ PiikGamepad *piik_gamepad_open(const uint8_t *descriptor, size_t descriptor_size
       @kIOHIDReportDescriptorKey: [NSData dataWithBytes:descriptor length:descriptor_size],
       @kIOHIDVendorIDKey: @0,
       @kIOHIDProductIDKey: @1,
-      @kIOHIDProductKey: @"Piik Remote Gamepad",
-      @kIOHIDManufacturerKey: @"Piik",
+      @kIOHIDProductKey: @"FerxLet Remote Gamepad",
+      @kIOHIDManufacturerKey: @"FerxLet",
       @kIOHIDTransportKey: @"Virtual",
       @kIOHIDSerialNumberKey: [[NSUUID UUID] UUIDString]
     };

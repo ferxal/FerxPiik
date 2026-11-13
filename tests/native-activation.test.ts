@@ -20,10 +20,10 @@ describe("Android App foreground actions", () => {
       expect(() => activateNativePicker("piik://media")).not.toThrow();
     }
   });
-  it("allows only fixed Piik actions in its explicit Android package", () => {
+  it("allows only fixed FerxLet actions in its explicit Android package", () => {
     expect(androidAppIntent("piik://app", android)).toBe("intent://app#Intent;scheme=piik;package=tv.piik.android;end");
     expect(androidAppIntent("piik://media", android)).toBe("intent://media#Intent;scheme=piik;package=tv.piik.android;end");
-    for (const action of [undefined, null, "https://piik.tv", "piik://media?approve=true", "piik://media#token=secret",
+    for (const action of [undefined, null, "https://piik.ferxa1.com", "piik://media?approve=true", "piik://media#token=secret",
       "piik://user@media", "piik://media/start", "intent://media#Intent;package=other;end"]) {
       expect(androidAppIntent(action, android)).toBeNull();
     }

@@ -1,8 +1,8 @@
-# Piik Documentation
+# FerxLet Documentation
 
-[About Piik](../README.md) · [中文介绍](../README.zh-CN.md) · [中文上手指南](./guide/getting-started.zh-CN.md)
+[About FerxLet](../README.md) · [中文介绍](../README.zh-CN.md) · [中文上手指南](./guide/getting-started.zh-CN.md)
 
-For using Piik, troubleshooting or self-hosting, start with the
+For using FerxLet, troubleshooting or self-hosting, start with the
 [reader documentation](./guide/README.md) · [中文文档中心](./guide/README.zh-CN.md).
 This page indexes developer and maintainer references.
 
@@ -17,7 +17,7 @@ This page indexes developer and maintainer references.
 | Build App packages and native capture | [App development](../cmd/piik-app/DEVELOPMENT.md) |
 | Build, publish or recover a maintained release | [Maintainer release tooling](./deployment.md) |
 | Send a useful bug report | [Diagnostics and export](./standards/configuration.md#diagnostics) |
-| Translate Piik or improve wording | [Translation guide](./guide/translating.md) · [中文翻译教程](./guide/translating.zh-CN.md) |
+| Translate FerxLet or improve wording | [Translation guide](./guide/translating.md) · [中文翻译教程](./guide/translating.zh-CN.md) |
 | Check release and platform readiness | [Current status](./status.md) |
 
 The introduction, getting-started, App, self-hosting, service-management and translation guides are available in English and Chinese.
@@ -63,7 +63,7 @@ For the self-contained App, follow [App development](../cmd/piik-app/DEVELOPMENT
 and [packaging](../cmd/piik-app/DEVELOPMENT.md#packaging), including the platform's
 native capture requirements.
 
-## Work on Piik
+## Work on FerxLet
 
 [Contributing](../CONTRIBUTING.md) covers the workflow and choosing focused checks.
 The main verification commands are:
@@ -75,7 +75,7 @@ npm run check:go
 
 Use the [naming and copy guide](./standards/naming.md) for product names,
 commands, role labels and Chinese/English voice.
-Piik-owned code uses [MIT](../LICENSE); see the
+FerxLet-owned code uses [MIT](../LICENSE); see the
 [licensing guide](../licenses/README.md) for third-party components.
 
 For the public website, see the [introduction design](./standards/public-introduction.md)

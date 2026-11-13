@@ -11,7 +11,7 @@ it("replays a real patch stack, drops upstream equivalents and preserves conflic
     cwd, encoding: "utf8", windowsHide: true, stdio: ["ignore", "pipe", "pipe"],
   }).trim();
   const identity = (cwd: string) => {
-    git(cwd, "config", "user.name", "Piik fixture");
+    git(cwd, "config", "user.name", "FerxLet fixture");
     git(cwd, "config", "user.email", "fixture@example.invalid");
     git(cwd, "config", "commit.gpgsign", "false");
   };
@@ -41,7 +41,7 @@ it("replays a real patch stack, drops upstream equivalents and preserves conflic
       "--base", base, "--head", head, "--onto", onto, "--out", out,
     ], {
       encoding: "utf8", windowsHide: true,
-      env: { ...process.env, GIT_COMMITTER_NAME: "Piik fixture", GIT_COMMITTER_EMAIL: "fixture@example.invalid" },
+      env: { ...process.env, GIT_COMMITTER_NAME: "FerxLet fixture", GIT_COMMITTER_EMAIL: "fixture@example.invalid" },
     });
     const candidate = join(root, "candidate");
     const ready = run(candidate);

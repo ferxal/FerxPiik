@@ -290,7 +290,7 @@ function verifyPlatformAssets(root, target) {
     }
   }
   if (target.goos === "darwin") {
-    const bundle = join(root, "Piik App.app");
+    const bundle = join(root, "FerxLet App.app");
     const executable = join(bundle, "Contents", "MacOS", target.appName);
     const plist = join(bundle, "Contents", "Info.plist");
     const icon = join(bundle, "Contents", "Resources", "piik.icns");

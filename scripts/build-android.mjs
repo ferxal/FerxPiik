@@ -169,6 +169,6 @@ if (!tunnelOnly) {
     assertCleanRevision(root, revision);
     packageAndroidRelease(apk, output, version, revision);
     assertCleanRevision(root, revision);
-    console.log(`Piik Android signed release APK: ${join(output, artifact)}`);
-  } else console.log(`Piik Android development APK: ${apk}`);
+    console.log(`FerxLet Android signed release APK: ${join(output, artifact)}`);
+  } else console.log(`FerxLet Android development APK: ${apk}`);
 }

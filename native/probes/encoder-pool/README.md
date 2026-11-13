@@ -11,7 +11,7 @@ Use Shiguredo `m152.7977.0.2` Windows x64 SDK (WebRTC commit
 ZIP SHA-256: `3250ee091eb745b9885482d92db352e6bcd5426940021ff90a095747d84d2137`.
 Keep the extracted SDK, official compiler dependencies and executable under
 ignored `build/encoder-pool`; preserve the SDK's notices. Do not ship this SDK
-as part of Piik based on this probe.
+as part of FerxLet based on this probe.
 
 With CMake and Visual Studio 2022 x64 tools available:
 

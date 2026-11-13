@@ -1,6 +1,6 @@
-# Piik App Development
+# FerxLet App Development
 
-Build, package and verify Piik App from the repository root. For installation,
+Build, package and verify FerxLet App from the repository root. For installation,
 mode selection and diagnostics, use the [App guide](./README.md).
 
 ## Run From Source
@@ -26,7 +26,7 @@ go build -o build/dev/piik-app.exe ./cmd/piik-app
 ./build/dev/piik-app.exe
 ```
 
-These commands build the App only. Choose **Local room** or open a Piik Site
+These commands build the App only. Choose **Local room** or open a FerxLet Site
 for Browser capture. Native capture and **Public invite** need their helpers;
 use `--capture-process` / `--tunnel-process` to select built helpers, or follow
 [packaging](#packaging) for a complete bundle.
@@ -85,7 +85,7 @@ explicit CI packaging, Release publication and updates are documented in
 [deployment](../../docs/deployment.md); creating a candidate does not publish it.
 
 The App runtime contains the following files. On macOS they live inside
-`Piik App.app/Contents/MacOS`; move the whole `.app` when installing it.
+`FerxLet App.app/Contents/MacOS`; move the whole `.app` when installing it.
 
 ```text
 piik-app[.exe]
@@ -116,13 +116,13 @@ for Host requirements and platform support.
 
 ### Desktop Icons
 
-The Windows App embeds the shared Piik mark through the
+The Windows App embeds the shared FerxLet mark through the
 `cmd/piik-app/piik_windows_amd64.syso` resource; the platform
 suffix keeps that Windows resource out of Linux and macOS builds.
 Linux packages include the standard `share/applications` desktop entry and
-hicolor icon. macOS packages include `Piik App.app` with an ICNS resource,
+hicolor icon. macOS packages include `FerxLet App.app` with an ICNS resource,
 the App executable and its helpers. For terminal use, the executable is
-`"Piik App.app/Contents/MacOS/piik-app"`.
+`"FerxLet App.app/Contents/MacOS/piik-app"`.
 
 The editable badge is [public/favicon.svg](../../public/favicon.svg).
 Export it at 16/24/32/48/64/128/256 px as PNG entries in `cmd/piik-app/piik.ico`;
@@ -143,7 +143,7 @@ proves bootstrap access and LAN invitation construction, and verifies complete
 process/profile cleanup. The loopback gate separately proves Site access with
 and without Chromium Local Network Access permission. Environment syntax below
 is POSIX; use equivalent variables on Windows. For the loopback gate, provide a
-reachable Piik Site and run once without `PIIK_CLIENT_GATE_GRANT_LOOPBACK`, then
+reachable FerxLet Site and run once without `PIIK_CLIENT_GATE_GRANT_LOOPBACK`, then
 again with `PIIK_CLIENT_GATE_GRANT_LOOPBACK=true` to cover both permission states.
 
 ```sh

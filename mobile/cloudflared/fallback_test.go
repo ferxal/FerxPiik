@@ -1,6 +1,6 @@
 //go:build piik_cloudflared
 
-// Compiled by overlay into the pinned upstream supervisor package, not Piik.
+// Compiled by overlay into the pinned upstream supervisor package, not FerxLet.
 package supervisor
 
 import (

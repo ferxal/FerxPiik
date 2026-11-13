@@ -36,7 +36,7 @@ var quickOriginPattern = regexp.MustCompile(
 	`https://[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.trycloudflare\.com`,
 )
 
-var errStartupExited = errors.New("public invitation service exited before connecting; reopen Piik to try again")
+var errStartupExited = errors.New("public invitation service exited before connecting; reopen FerxLet to try again")
 
 type Process struct {
 	origin string
@@ -111,7 +111,7 @@ func Start(
 			err = errors.Join(startup.Err(), err)
 		}
 		if parent.Err() == nil {
-			err = errors.Join(failure.TunnelTimeout, errors.New("public invitation service did not connect within 30 seconds; check your Internet connection and reopen Piik to try again"), err)
+			err = errors.Join(failure.TunnelTimeout, errors.New("public invitation service did not connect within 30 seconds; check your Internet connection and reopen FerxLet to try again"), err)
 		}
 	}
 	if err != nil && err != parent.Err() && failure.Of(err) == "" {
@@ -362,10 +362,10 @@ func validateExecutable(path string) error {
 	path = strings.TrimSpace(path)
 	metadata, err := os.Stat(path)
 	if err != nil {
-		return fmt.Errorf("packaged public tunnel is unavailable; extract the complete Piik archive again: %w", err)
+		return fmt.Errorf("packaged public tunnel is unavailable; extract the complete FerxLet archive again: %w", err)
 	}
 	if !metadata.Mode().IsRegular() {
-		return errors.New("packaged public tunnel is not a file; extract the complete Piik archive again")
+		return errors.New("packaged public tunnel is not a file; extract the complete FerxLet archive again")
 	}
 	return nil
 }

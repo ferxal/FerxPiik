@@ -169,7 +169,7 @@ export class PiikPromo extends HTMLElement {
     const play = this.playing ? label('Pause', '暂停') : this.t >= this.duration && this.duration ? label('Replay', '重播') : label('Play', '播放');
     this.toggleAttribute('data-playing', this.playing);
     this.setAttribute('role', 'group');
-    this.setAttribute('aria-label', this.meta?.title[this.lang2()] || label('Piik film', 'Piik 短片'));
+    this.setAttribute('aria-label', this.meta?.title[this.lang2()] || label('FerxLet film', 'FerxLet 短片'));
     this.$('.pk-bar').setAttribute('aria-label', label('Playback controls', '播放控制'));
     this.$('.pk-pp').innerHTML = this.playing ? ICON.pause : this.t >= this.duration && this.duration ? ICON.refresh : ICON.play;
     this.$('.pk-pp').setAttribute('aria-label', play);

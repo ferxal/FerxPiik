@@ -389,7 +389,7 @@ export function AppLauncherPage() {
         )}
       </main>
       <footer className="lr-client-footer">
-        <a className="lr-btn is-dense is-quiet" href="https://github.com/TNTcraftHIM/Piik" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true"> ↗</span></a>
+        <a className="lr-btn is-dense is-quiet" href="https://github.com/ferxal/FerxPiik" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true"> ↗</span></a>
         {version && <p className="lr-client-version">
           <span className={vis ? "visually-hidden" : undefined}>{t("client.launch.version", { version })}</span>
           {vis && <span aria-hidden="true">{version}</span>}

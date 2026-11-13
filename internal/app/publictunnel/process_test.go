@@ -70,7 +70,7 @@ func TestMain(tests *testing.M) {
 		}
 		if mode == "tcp-only" {
 			// Model the pinned Quick Tunnel's opt-in protocol fallback. Without
-			// both flags, an unavailable UDP edge consumes Piik's startup budget.
+			// both flags, an unavailable UDP edge consumes FerxLet's startup budget.
 			for name, want := range map[string]string{"--protocol": "auto", "--max-edge-addr-retries": "0"} {
 				index := slices.Index(os.Args, name)
 				if index < 0 || index+1 >= len(os.Args) || os.Args[index+1] != want {
@@ -446,7 +446,7 @@ func TestStartupCancellationStillRetiresTheTunnel(t *testing.T) {
 func TestMissingTunnelExplainsHowToRestoreThePackage(t *testing.T) {
 	_, err := Start(t.Context(), filepath.Join(t.TempDir(), "missing-tunnel"), "http://127.0.0.1:8787", "")
 	var cause *os.PathError
-	if !errors.As(err, &cause) || appfailure.Of(err) != appfailure.TunnelUnavailable || !strings.Contains(err.Error(), "extract the complete Piik archive") {
+	if !errors.As(err, &cause) || appfailure.Of(err) != appfailure.TunnelUnavailable || !strings.Contains(err.Error(), "extract the complete FerxLet archive") {
 		t.Fatalf("missing tunnel lost its cause or recovery instruction: %v", err)
 	}
 }

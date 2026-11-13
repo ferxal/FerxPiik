@@ -5,7 +5,7 @@ const revision = "a".repeat(40), version = "v2.6.1";
 const asset = { name: "piik-app-fixture.zip", state: "uploaded", size: 1024, digest: `sha256:${"b".repeat(64)}` };
 const source = { tag_name: version, target_commitish: revision, draft: false, prerelease: false, assets: [asset] };
 const mirror = { tag_name: version, prerelease: false, body: `<!-- piik-source: ${revision} -->`, assets: [{
-  type: "attach", name: asset.name, size: asset.size, browser_download_url: `https://atomgit.com/TNTcraftHIM/Piik/releases/download/${version}/${asset.name}`,
+  type: "attach", name: asset.name, size: asset.size, browser_download_url: `https://atomgit.com/ferxal/FerxPiik/releases/download/${version}/${asset.name}`,
 }, ...["zip", "tar.gz", "tar.bz2", "tar"].map(extension => ({ type: "source", name: `${version}.${extension}` }))] };
 
 test("a completed stable mirror needs only its metadata and no source search or package download", async () => {

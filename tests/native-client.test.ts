@@ -320,7 +320,7 @@ describe("native App private wire", () => {
   );
 
   it.each([NATIVE_CLIENT_PROTOCOL - 1, NATIVE_CLIENT_PROTOCOL + 1])(
-    "reports observed Piik App protocol %s without opening control or presentation",
+    "reports observed FerxLet App protocol %s without opening control or presentation",
     async (protocol) => {
       vi.stubGlobal("window", { setTimeout, clearTimeout, location: new URL("http://127.0.0.1/") });
       const socket = vi.fn();

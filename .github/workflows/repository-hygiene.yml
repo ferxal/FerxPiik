@@ -370,7 +370,7 @@ jobs:
             # Manual candidates exercise the same release variant with a disposable key.
             keytool -genkeypair -keystore "$RUNNER_TEMP/piik-android.keystore" -storetype PKCS12 \
               -storepass candidate-password -keypass candidate-password -alias piik-candidate \
-              -keyalg RSA -keysize 3072 -validity 2 -dname 'CN=Piik CI candidate' -noprompt
+              -keyalg RSA -keysize 3072 -validity 2 -dname 'CN=FerxLet CI candidate' -noprompt
           fi
       - name: Build and verify Android release APK
         if: matrix.target == 'android-universal'

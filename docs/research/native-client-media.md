@@ -11,7 +11,7 @@
 Default display capture reads the current default render endpoint; process
 inclusion/exclusion uses Windows'
 [endpoint-independent loopback](https://learn.microsoft.com/en-us/samples/microsoft/windows-classic-samples/applicationloopbackaudio-sample/).
-For [#534](https://github.com/TNTcraftHIM/Piik/issues/534), an isolated API control
+For [#534](https://github.com/ferxal/FerxPiik/issues/534), an isolated API control
 sent two tones only to an existing virtual endpoint without changing the default
 headset. Default capture returned no packets; excluding a silent test process
 received both tones. The real Go session also retained video and audio-output
@@ -65,7 +65,7 @@ accepts one PID and its process tree, not a list of unrelated processes.
 The [win-capture-audio implementation](https://github.com/bozbez/win-capture-audio/releases/tag/v2.2.0-beta)
 supports broader exclusion by tracking audio sessions, capturing non-matching
 processes and mixing them. Applying that design here would require session
-discovery, process-tree deduplication and bounded multi-input mixing; Piik's
+discovery, process-tree deduplication and bounded multi-input mixing; FerxLet's
 current source-plus-microphone mixer does not own that inventory. Multiple
 exclusions therefore require a capture design change, not just a multi-select
 control. Combining exclusion streams does not itself exclude their combined set.
@@ -77,7 +77,7 @@ SFU and loopback v8 observations below are historical. [ADR-0013](../adr/0013-em
 owns the SFU replacement; [versioning](../standards/versioning.md) owns the current
 wire contract.
 
-Piik App can own one process-isolated Windows capture and hardware H.264
+FerxLet App can own one process-isolated Windows capture and hardware H.264
 encoder, feed its Annex-B access units into one Pion source, and deliver that
 source through independent WebRTC transports to unmodified Chrome receivers.
 The Browser remains the room, route, and signaling authority.
@@ -143,7 +143,7 @@ App CI follows the toolchain declared in [go.mod](../../go.mod).
 
 ## macOS Audio Startup
 
-[Issue #486](https://github.com/TNTcraftHIM/Piik/issues/486) reports successful
+[Issue #486](https://github.com/ferxal/FerxPiik/issues/486) reports successful
 video-only startup but audio and then video timeouts with source audio enabled.
 Darwin previously confirmed audio readiness only after collecting 20 ms of PCM.
 The local correction instead confirms successful ScreenCaptureKit/AVAudioEngine
@@ -231,7 +231,7 @@ less initialization and a valid handoff, not a material speedup or a repair for
 an uninterruptible driver call. Concurrent cadence benchmarks are not adopted:
 shared-device contention would change the capability being measured.
 
-The earlier v2.2.1 report in [#437](https://github.com/TNTcraftHIM/Piik/issues/437)
+The earlier v2.2.1 report in [#437](https://github.com/ferxal/FerxPiik/issues/437)
 records device loss after about 3.25 seconds, before the Auto selection finishes.
 The selector could then enter another candidate despite lacking time for its
 required cadence measurement. Admission now uses that same measurement schedule
@@ -240,7 +240,7 @@ remaining-budget control rejects Auto at 30 fps but retains manual H264 and the
 immediate 1 fps probe. This fixes budget admission, not the physical
 `DEVICE_HUNG`; the later blocked API and reporter-device outcome remain unknown.
 
-The [October 20 follow-up](https://github.com/TNTcraftHIM/Piik/issues/437#issuecomment-6284470067)
+The [October 20 follow-up](https://github.com/ferxal/FerxPiik/issues/437#issuecomment-6284470067)
 contains v2.2.2 App evidence: all six Auto attempts report device loss during
 probe texture creation, with removal reason `DEVICE_HUNG`, then select VP8.
 Four reach active capture; two later hit local-edge preparation deadlines.
@@ -270,7 +270,7 @@ A 2026-10-03 local check exercised all five enumerated adapter entries, includin
 15 successful NVIDIA activation/encode/shutdown cycles on reused devices.
 AMD activation returned `0x8007000e` with a healthy D3D device. A standalone
 `MFTEnum2 -> ActivateObject` probe reproduced that failure for both AMD entries
-without Piik, a D3D device or codec configuration, while NVIDIA entries activated.
+without FerxLet, a D3D device or codec configuration, while NVIDIA entries activated.
 This isolates the local activation failure to the platform/MFT path; it does not
 identify the reporter's AMD failure. Production Auto and manual H264 both moved
 from that preferred AMD candidate to working NVIDIA
@@ -289,7 +289,7 @@ synthesis remains outside the measured cadence. These results narrow the
 tested mechanisms but do not cover the failing device, driver reset or exhaustion.
 
 Repeated NVIDIA MFT activation retained about two process handles per cycle.
-A standalone 40-cycle program reproduced this without Piik or a D3D device:
+A standalone 40-cycle program reproduced this without FerxLet or a D3D device:
 `MFTEnum2 -> ActivateObject -> ShutdownObject -> Release`, with both COM reference
 counts reaching zero. Fresh activation objects, direct `MFShutdownObject`, and
 waiting five seconds after `MFShutdown` did not remove the incremental growth.
@@ -484,7 +484,7 @@ took less than a millisecond, and encoder diagnostics showed small encode times
 without CPU/quality adaptation. Bringing the source window forward did not
 restore cadence. A capture-only control, without the App or SFU, also delivered
 about 3.9 fps from both Chrome and a separate animated Windows Forms window.
-A separate minimal WGC program, using only Windows APIs and no Piik code,
+A separate minimal WGC program, using only Windows APIs and no FerxLet code,
 reproduced about 3.8 fps while that Forms window painted about 32 fps.
 Default, 4 ms and 1 ms capture intervals returned the same rate, including with
 the source kept topmost; property readback confirmed each requested interval.
@@ -519,7 +519,7 @@ and low-latency mode where writable. Microsoft's
 classify these properties as optional. Chromium's
 [Media Foundation encoder](https://chromium.googlesource.com/chromium/src/+/main/media/gpu/windows/media_foundation_video_encode_accelerator_win.cc)
 explicitly sets even one temporal layer for Intel and conditionally sets low-latency
-mode. Piik uses the property capabilities without a vendor or version branch;
+mode. FerxLet uses the property capabilities without a vendor or version branch;
 an absent optional property or readback no longer rejects an otherwise usable
 encoder. Required CBR, bitrate and GOP checks, Constrained Baseline bitstream
 admission, actual H.264 output and Auto's measured frame cadence retain their owners.
@@ -528,7 +528,7 @@ The [H264 burst and recovery assessment](./webrtc-encoder-pool.md#h264-burst-and
 records the measured scene-change queue delay and the rejected one-frame HRD
 override. Average bitrate and optional low-latency mode do not bound each AU.
 
-Issue [#432](https://github.com/TNTcraftHIM/Piik/issues/432) reports more visible
+Issue [#432](https://github.com/ferxal/FerxPiik/issues/432) reports more visible
 blocking with native H.264 than VP8 on v1.6.7. Review of its attached Browser
 report confirms 720p30 in both comparison windows, roughly 11 Mbps received,
 and no reported packet loss; the 1080p60 H.264 window receives roughly 10 Mbps.
@@ -548,7 +548,7 @@ distinguishes profile, rate control and optional quality/speed settings.
 
 The MFT request uses `eAVEncH264VProfile_ConstrainedBase` (256), matching the
 negotiated coding-tool subset. Microsoft's [profile enumeration](https://learn.microsoft.com/en-us/windows/win32/api/codecapi/ne-codecapi-eavench264vprofile)
-distinguishes it from ordinary Baseline (66). In [#538](https://github.com/TNTcraftHIM/Piik/issues/538),
+distinguishes it from ordinary Baseline (66). In [#538](https://github.com/ferxal/FerxPiik/issues/538),
 an AMD encoder produced `420420` for 66 and `424020` for 256; only the latter
 passes the unchanged Constrained Baseline bitstream check. Request and readback
 must use the same profile; relaxing the emitted-SPS check would change the
@@ -596,7 +596,7 @@ presets cannot be assumed to map directly to vendor Media Foundation properties.
 
 ### WebRTC Profile Compatibility
 
-Checked 2026-10-03. File decoding support, WebRTC negotiation and Piik's forwarded
+Checked 2026-10-03. File decoding support, WebRTC negotiation and FerxLet's forwarded
 bitstream contract are separate capabilities. A higher profile must satisfy all
 three, including downstream relays; hardware support alone is insufficient.
 
@@ -606,7 +606,7 @@ three, including downstream relays; hardware support alone is insufficient.
 | Firefox 155 on Windows | An isolated profile with checksum-verified official OpenH264 2.6.0 advertised only Baseline variants. Real Chrome-to-Firefox negotiation decoded 65 Constrained Baseline frames in a 2.2-second observation; Main-only and High-only offers were rejected (`m=video 0`), before media transport. |
 | Safari / iOS / macOS | Current [WebKit codec factories](https://github.com/WebKit/WebKit/blob/main/Source/ThirdParty/libwebrtc/Source/webrtc/webkit_sdk/objc/components/video_codec/RTCDefaultVideoDecoderFactory.m) list Constrained High and Constrained Baseline. Constrained High (`640c`) is a distinct negotiated subset from ordinary High (`6400`). Source review does not replace physical Safari acceptance. |
 | Android Chrome and other Chromium platforms | The [WebRTC decoder factory](https://github.com/chromium/chromium/blob/main/third_party/blink/renderer/platform/peerconnection/rtc_video_decoder_factory.cc) consults platform decoder capabilities. Android additionally [checks profile, level and dimensions](https://github.com/chromium/chromium/blob/main/media/gpu/android/media_codec_video_decoder.cc). No universal device guarantee or phone acceptance is established here. |
-| Piik App on Windows / macOS / Linux | Capture and encoded fanout retain Constrained Baseline. Changing only an encoder setting would leave admission and downstream declarations inconsistent. |
+| FerxLet App on Windows / macOS / Linux | Capture and encoded fanout retain Constrained Baseline. Changing only an encoder setting would leave admission and downstream declarations inconsistent. |
 
 The earlier Firefox probe without GMP was inconclusive; the installed-plugin
 check above supersedes it. [Firefox's current JSEP defaults](https://github.com/mozilla-firefox/firefox/blob/main/dom/media/webrtc/jsep/JsepCodecDescription.h)
@@ -657,7 +657,7 @@ owns its upstream submission and removal boundary.
 Firefox-generated SDP also reproduced audio omission for a valid `bundle-only`
 section with port zero. The receiver had treated every zero port as rejection;
 it now follows [RFC 9143](https://www.rfc-editor.org/rfc/rfc9143.html#section-6),
-retaining the existing inactive/receive-only checks. Piik's current balanced
+retaining the existing inactive/receive-only checks. FerxLet's current balanced
 Browser offer did not trigger this variant; the max-bundle control did. This is
 a corrected SDP interpretation, not evidence that all Firefox sharing lost audio.
 
@@ -711,7 +711,7 @@ envelope carries actual dimensions; declared output limits and room/route
 identity remain unchanged. Encoded-input derivation uses the same worker.
 
 The candidate passes macOS SDK compilation and packaged startup on Apple silicon
-and Intel in [CI run 38128668158](https://github.com/TNTcraftHIM/Piik/actions/runs/38128668158).
+and Intel in [CI run 38128668158](https://github.com/ferxal/FerxPiik/actions/runs/38128668158).
 The native check includes content-geometry validation and successive-shape
 hardware self-tests when an encoder is available. Runner checks do not replace
 real window resizing, Retina transitions, cropped image fidelity or quiet-source
@@ -784,7 +784,7 @@ so local success is not a cross-device guarantee.
 A separate Chrome 152 canvas/PeerConnection control decoded 3840x2160 near
 60 fps with both H.264 and VP8. Its H.264 SDP advertised Level 3.1, consistent
 with [WebRTC's built-in capability list](https://webrtc.googlesource.com/src/+/refs/heads/main/modules/video_coding/codecs/h264/h264.cc).
-That static label alone does not establish a device's observed limit. Piik does
+That static label alone does not establish a device's observed limit. FerxLet does
 not add an independent quality ladder or infer universal decoder support from
 codec matching; limited receivers and real routes still need acceptance.
 
@@ -801,7 +801,7 @@ an offset NV12 aperture through the DXGI-buffer path. Oversized coded/reference
 storage remains rejected; the physical macOS boundary above still applies.
 
 An additional nonzero left/top SPS crop exposed a local Media Foundation software
-decoder limit: its raw output omitted right/bottom picture pixels before Piik's
+decoder limit: its raw output omitted right/bottom picture pixels before FerxLet's
 surface copy. FFmpeg decoded the same generated frame correctly. Removing the
 input-size hint or changing output-aperture attributes did not restore them.
 The passing ordinary alignment-padding controls do not establish arbitrary SPS
@@ -902,7 +902,7 @@ The operating-range review found that the inherited 15 fps / 2 Mbps
 source minimum and 12 Mbps maximum retained the earlier menu range; they were not
 codec limits. [LiveKit's screen-share presets](https://github.com/livekit/client-sdk-js/blob/main/src/room/track/options.ts)
 include 720p5 at 800 kbps. [YouTube's H.264 live-ingest guidance](https://support.google.com/youtube/answer/2853702?hl=en)
-recommends 50 Mbps for 4K60, but its ingest/re-encoding workload is not a Piik
+recommends 50 Mbps for 4K60, but its ingest/re-encoding workload is not a FerxLet
 WebRTC operating policy. These references motivate testing both ends of the
 range, rather than inheriting the old controls or copying another service's cap.
 
@@ -951,7 +951,7 @@ This uses GStreamer 1.28.3 and libportal 0.9.1 on an isolated Alpine runner;
 its probe correctly reports no capture without a desktop session. Actual
 Portal capture and platform packaging remain separate checks.
 
-The square-pixel correction from [#488](https://github.com/TNTcraftHIM/Piik/pull/488)
+The square-pixel correction from [#488](https://github.com/ferxal/FerxPiik/pull/488)
 constrains the raw desktop source before downstream scaling. This follows
 [GStreamer negotiation](https://gstreamer.freedesktop.org/documentation/plugin-development/advanced/negotiation.html):
 the source selects from downstream caps, so an output-only constraint can leave
@@ -998,7 +998,7 @@ samples without granting them control authority. Shared Go/TypeScript fixtures
 also cover sender, publication and receiver evidence. This establishes boundary
 behavior, not the cause of an unmatched field report or an improvement to ICE.
 
-| Meaning | Piik owner and representation |
+| Meaning | FerxLet owner and representation |
 | --- | --- |
 | Quick presets | UI-local labels mapping to numeric picture/audio requests; adding a label does not extend the wire |
 | Host intent | One validated numeric size, frame-rate and bitrate request, distinct from measured output |
@@ -1035,7 +1035,7 @@ switches are not implied by this proposal. This is also explicit in
 [mediasoup's producer/consumer capabilities](https://mediasoup.org/documentation/v3/mediasoup/rtp-parameters-and-capabilities/).
 [LiveKit's backup codec policy](https://github.com/livekit/client-sdk-js/blob/main/src/room/track/options.ts)
 uses another encoding or switches the publication; that compatibility has real
-CPU/bandwidth or continuity costs. Piik's embedded LiveKit components do not
+CPU/bandwidth or continuity costs. FerxLet's embedded LiveKit components do not
 automatically provide its complete SDK policy. Keep H.264/VP8 as the initial
 compatibility path; admit a new format only with its whole-route evidence.
 
@@ -1058,7 +1058,7 @@ contract; avoid a general compatibility framework.
 
 ### Numeric Audio And UI Rationale
 
-[#462](https://github.com/TNTcraftHIM/Piik/pull/462) requests 256/320 kbps Opus.
+[#462](https://github.com/ferxal/FerxPiik/pull/462) requests 256/320 kbps Opus.
 The values are permitted by [RFC 7587](https://www.rfc-editor.org/rfc/rfc7587.html#section-6.1),
 whose receive-rate parameter spans 6,000..510,000 bit/s. This is a codec boundary,
 not a recommended default or proof of audible benefit. The v1.9.2 preset names
@@ -1080,14 +1080,14 @@ likewise contains a numeric maximum bitrate; its
 also considers stereo, source processing and redundancy. Raising bitrate alone
 does not establish studio quality, losslessness or multi-channel output.
 
-Keep Piik's compact presets and existing picture/sound settings disclosure.
+Keep FerxLet's compact presets and existing picture/sound settings disclosure.
 Expose custom numeric values with units and valid ranges there, without adding
 a permanent row for each new preset. Use supported-format selection for codecs,
 not an arbitrary text field. Preserve source aspect ratio without upscaling;
 distinguish selected limits from actual capture/decoded dimensions in existing
 details. Capability-related restrictions explain a real limitation briefly.
 The [OBS settings guide](https://obsproject.com/kb/obs-studio-overview#settings)
-supports a simple/default entry with further controls; Piik need not reproduce
+supports a simple/default entry with further controls; FerxLet need not reproduce
 OBS's full output configuration. Existing visual/tooltip owners still apply,
 including narrow screens, both themes and visual mode.
 

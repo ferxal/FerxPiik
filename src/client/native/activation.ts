@@ -1,4 +1,4 @@
-// Android intents only foreground Piik. App-owned pending requests still own
+// Android intents only foreground FerxLet. App-owned pending requests still own
 // permission, and the normal loopback approval/health checks own Site access.
 export function androidAppIntent(action: unknown, userAgent = typeof navigator === "undefined" ? "" : navigator.userAgent): string | null {
   if (action !== "piik://app" && action !== "piik://media") return null;

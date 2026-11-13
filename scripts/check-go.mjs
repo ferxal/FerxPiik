@@ -96,7 +96,7 @@ function runGoTests(go, packagesToTest = GO_TEST_PACKAGES, flags = []) {
   if (process.platform !== "win32") {
     run(go, ["test", ...flags, ...packagesToTest.filter((entry) => entry.startsWith("./"))]);
     // PCP and NAT-PMP both require port 5351. Serialize only their fixture
-    // packages, keeping ordinary Piik tests parallel and using portable loopback.
+    // packages, keeping ordinary FerxLet tests parallel and using portable loopback.
     run(go, ["test", ...flags, "-p=1", ...packagesToTest.filter((entry) => !entry.startsWith("./"))]);
     return;
   }
@@ -231,4 +231,4 @@ if (mode === "--race") {
   if (mode !== "--capture-only") checkCore();
   if (mode !== "--core") checkPlatformCapture();
 }
-process.stdout.write("Piik checks passed.\n");
+process.stdout.write("FerxLet checks passed.\n");

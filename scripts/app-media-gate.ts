@@ -27,7 +27,7 @@ import {
 
 const ROOT = resolve(import.meta.dirname, "..");
 const BUILD_ROOT = join(ROOT, "build", "go-check");
-const SOURCE_TITLE = "Piik Native Gate Source";
+const SOURCE_TITLE = "FerxLet Native Gate Source";
 const GATE_STUN_URLS = process.env.PIIK_CLIENT_GATE_STUN_URLS?.trim();
 
 interface Probe {

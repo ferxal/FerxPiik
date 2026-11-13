@@ -859,7 +859,7 @@ func TestAppConfigurationFailurePreservesSystemCause(t *testing.T) {
 	}
 	err := Run(t.Context(), Options{DisableBrowser: true, ConfigPath: filepath.Join(blocked, "client.json")})
 	var cause *os.PathError
-	if !errors.As(err, &cause) || !strings.Contains(err.Error(), "Piik App configuration is unavailable") {
+	if !errors.As(err, &cause) || !strings.Contains(err.Error(), "FerxLet App configuration is unavailable") {
 		t.Fatalf("configuration failure lost its path/system cause: %v", err)
 	}
 }

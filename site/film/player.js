@@ -11,7 +11,7 @@ const player = document.querySelector('piik-promo');
 function language(lang) {
   document.documentElement.lang = lang;
   player.setAttribute('lang', lang === 'zh-CN' ? 'zh' : 'en');
-  document.title = lang === 'zh-CN' ? 'Piik · 预告状' : 'Piik · The Calling Card';
+  document.title = lang === 'zh-CN' ? 'FerxLet · 预告状' : 'FerxLet · The Calling Card';
 }
 language(initialLanguage());
 window.addEventListener('message', event => {

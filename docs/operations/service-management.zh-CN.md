@@ -20,14 +20,14 @@ sudo systemctl enable --now piik
 sudo systemctl status piik
 ```
 
-HTTPS 代理与 Piik 在同一主机时，让 HTTP 继续绑定回环地址。
+HTTPS 代理与 FerxLet 在同一主机时，让 HTTP 继续绑定回环地址。
 STUN 和可选的 SFU 使用各自的公网 UDP 监听器。已有 nginx 时，可修改
 [代理示例](../../deploy/nginx/piik.conf.example)中的域名与证书路径后使用。
 
 ## 容器
 
 安装步骤见 [Docker Compose 配置](./self-hosting.zh-CN.md#使用-docker-compose)。
-镜像为 `ghcr.io/tntcrafthim/piik`，提供 `latest` 和对应产品版本标签（`vMAJOR.MINOR.PATCH`），
+镜像为 `ghcr.io/ferxal/ferxpiik`，提供 `latest` 和对应产品版本标签（`vMAJOR.MINOR.PATCH`），
 Docker 会按主机架构选择 **linux/amd64** 或 **linux/arm64**。
 在 `.env` 中设置 `PIIK_IMAGE` 可固定版本或镜像摘要。
 更新需要手动执行；仅拉取镜像不会替换正在运行的容器。
@@ -47,7 +47,7 @@ Docker 会按主机架构选择 **linux/amd64** 或 **linux/arm64**。
 公布标准 UDP 端口，并启用自动重启。公布端口不会开启对应服务，可选监听器由 `.env` 控制。
 修改监听端口时，同时修改应用配置和端口映射。
 请使用主机上的代理，或明确调整代理容器的网络配置；代理容器自己的 `127.0.0.1`
-无法访问另一个容器内的 Piik。
+无法访问另一个容器内的 FerxLet。
 
 镜像中的 `/home/nonroot` 属于 UID/GID `65532:65532`，权限为 `0700`。
 新的命名数据卷继承该目录；已有数据卷或绑定挂载需要事先允许该身份写入。
@@ -69,7 +69,7 @@ docker compose up -d
 docker compose logs --tail=50 piik
 ```
 
-每次使用新的备份目录。复制 SQLite 前先停止 Piik，确保数据库和日志文件一致。
+每次使用新的备份目录。复制 SQLite 前先停止 FerxLet，确保数据库和日志文件一致。
 单独保存 `.env`，并将配置和数据备份视为房间凭据加以保护。
 保留同一个 Compose 项目与目录，以便继续使用原命名数据卷；
 `docker compose down --volumes` 会删除这些数据。
@@ -79,14 +79,14 @@ docker compose logs --tail=50 piik
 ## 运行验证
 
 - 本地和公网来源的 `/healthz` 都返回 `{"status":"ok"}`。
-- Piik 与 HTTPS 代理处于运行状态，重启次数符合预期，日志和资源使用有界；
-  Piik 占有配置中的 STUN/SFU UDP 监听器。
+- FerxLet 与 HTTPS 代理处于运行状态，重启次数符合预期，日志和资源使用有界；
+  FerxLet 占有配置中的 STUN/SFU UDP 监听器。
 - 官方 Trickle ICE 示例能从配置的 STUN 服务取得普通 UDP `srflx` 候选，不出现 relay 候选。
 - Peer ICE 成功时，两个网络上的设备能在直连房间中显示媒体。
 - 启用 SFU 时，受限路由通过内嵌 SFU UDP 创建一个受管理的房主发布，且只接纳已授权订阅；
   Peer 后代节点继续使用普通 P2P。
 - 阻断全部 UDP 后，在有限时间内进入明确的失败状态。
-- 使用持久化模式时，重启 Piik 保留房间权威状态；浏览器会话和媒体从新进程状态重新连接。
+- 使用持久化模式时，重启 FerxLet 保留房间权威状态；浏览器会话和媒体从新进程状态重新连接。
 
 代表性网络、移动端、音频、20 位观众和长时间运行的证据由
 [验证状态](../verification-status.md)跟踪，不记录在本操作手册中。

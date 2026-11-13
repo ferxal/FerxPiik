@@ -1,6 +1,6 @@
 //go:build android && piik_cloudflared
 
-// Piik's Android adapter for the pinned cloudflared executable. See README.md.
+// FerxLet's Android adapter for the pinned cloudflared executable. See README.md.
 package main
 
 /*

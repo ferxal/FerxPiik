@@ -29,7 +29,7 @@ export function AppConnectionButton({ onConnected }: AppConnectionProps) {
   const [state, setState] = useState<"idle" | "waking" | "busy" | "approval" | "approving" | "ready" | "unavailable" | "incompatible">("idle");
   const wakeURL = androidAppIntent("piik://app");
   const [helpOpen, setHelpOpen] = useState(false);
-  const downloadURL = useProjectLink("/#download", "https://github.com/TNTcraftHIM/Piik/releases/latest", helpOpen);
+  const downloadURL = useProjectLink("/#download", "https://github.com/ferxal/FerxPiik/releases/latest", helpOpen);
   const helpId = useId();
   const trigger = useRef<HTMLButtonElement>(null);
   const help = useRef<HTMLDivElement>(null);

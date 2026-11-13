@@ -45,8 +45,8 @@ const release = (draft: boolean): Release => ({
 
 describe("AtomGit mirror publication", () => {
   const marker = `<!-- piik-source: ${revision} -->`;
-  const api = "https://api.atomgit.com/api/v5/repos/TNTcraftHIM/Piik";
-  const download = `https://atomgit.com/TNTcraftHIM/Piik/releases/download/${version}/`;
+  const api = "https://api.atomgit.com/api/v5/repos/ferxal/FerxPiik";
+  const download = `https://atomgit.com/ferxal/FerxPiik/releases/download/${version}/`;
   const sourceAssets = packageNames.map((name) => {
     const bytes = readFileSync(join(directory, name));
     return { name, size: bytes.length, digest: `sha256:${hash(bytes)}`, state: "uploaded" };
@@ -69,7 +69,7 @@ describe("AtomGit mirror publication", () => {
     const present = options.existing === "pending" ? attachments.slice(0, 1) : options.existing && !options.missing ? [...attachments] : [];
     let pending = options.existing !== "published";
     const source = {
-      ...release(false), html_url: `https://github.com/TNTcraftHIM/Piik/releases/tag/${version}`,
+      ...release(false), html_url: `https://github.com/ferxal/FerxPiik/releases/tag/${version}`,
       target_commitish: options.wrongSource ? "b".repeat(40) : revision,
       assets: options.wrongDigest ? sourceAssets.map((asset) => ({ ...asset, digest: "sha256:wrong" })) : sourceAssets,
     };
@@ -80,7 +80,7 @@ describe("AtomGit mirror publication", () => {
         if (options.stale || (options.supersededDuringUpload && latestReads > 1)) {
           return JSON.stringify({ ...source, tag_name: "v1.1.0", target_commitish: "b".repeat(40) });
         }
-      } else expect(args[1]).toBe(`repos/TNTcraftHIM/Piik/releases/tags/${version}`);
+      } else expect(args[1]).toBe(`repos/ferxal/FerxPiik/releases/tags/${version}`);
       return JSON.stringify(source);
     });
     vi.stubEnv("ATOMGIT_TOKEN", "fixture-mirror-token");

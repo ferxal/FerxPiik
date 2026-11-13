@@ -129,7 +129,7 @@ function build(command: string, args: string[]): void {
   }
 }
 
-// startRoomServer builds and starts the Piik server the Browser pages and
+// startRoomServer builds and starts the FerxLet server the Browser pages and
 // both Apps share. PIIK_ENV stays development because production
 // requires an HTTPS public origin and STUN; the Web assets are
 // embedded either way.

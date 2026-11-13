@@ -246,7 +246,7 @@ export function build(film, K) {
     m.parts.sparkles.children[0].setAttribute('d', 'm25 11.5 .8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8.8-1.9Z');
     m.parts.sparkles.children[1].setAttribute('d', 'm25 17.2 .45 1.1 1.1.45-1.1.45-.45 1.1-.45-1.1-1.1-.45 1.1-.45.45-1.1Z');
     lm.appendChild(m.el);
-    const wm = h('div', { class: 'nowrap', html: 'Piik<span class="identity-dot">.</span>' }, brand);
+    const wm = h('div', { class: 'nowrap', html: 'FerxLet<span class="identity-dot">.</span>' }, brand);
     Object.assign(wm.style, { font: WORDMARK(300), letterSpacing: '-14px', color: C.cream });
     const tag = h('div', { class: 'abs nowrap' }, lock);
     Object.assign(tag.style, { left: '0', width: '1920px', textAlign: 'center', top: '535px', color: C.cream });
@@ -260,7 +260,7 @@ export function build(film, K) {
     });
     const url = h('div', { class: 'abs nowrap center' }, lock);
     Object.assign(url.style, { left: '0', width: '1920px', top: '870px', font: '700 68px/1 "JetBrains Mono"', color: C.cream });
-    url.innerHTML = `<span style="padding:8px 28px;border:3px solid ${C.cream};border-radius:48px">piik.tv</span>`;
+    url.innerHTML = `<span style="padding:8px 28px;border:3px solid ${C.cream};border-radius:48px">piik.ferxa1.com</span>`;
     const note = h('div', { class: 'abs nowrap', html: S.footer }, lock);
     Object.assign(note.style, { left: '0', top: '90px', width: '1920px', textAlign: 'center', font: '500 30px/1 "Noto Sans SC"', letterSpacing: '.04em', color: C.cream, opacity: '.75' });
     const flash = h('div', { class: 'fill' }, root);

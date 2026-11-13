@@ -167,7 +167,7 @@ function Screen({ shot }: { shot: Shot }) {
   if (shot === "desktop") return (
     <main className="desktop">
       <div className="desktop-folder">
-        <div className="desktop-path"><Folder size={25} /> Piik App</div>
+        <div className="desktop-path"><Folder size={25} /> FerxLet App</div>
         <div className="desktop-files">
           <button id="desktop-app" type="button">
             <img src="../../assets/favicon.svg" width="96" height="96" alt="" />
